@@ -16,9 +16,13 @@
 #include <stdio.h>
 //---------------------------------------------------------------------------
 
-#include "Lcd/Lcd.h"
+#include "Device/Device.h"
+#include "BaseTypes/DateTime.h"
 #include "BaseTypes/rtc.h"
 #include "Device/Ports.h"
+#include "Buttons/KeyMatrixController.h"
+#include "Modes/MainMode.h"
+#include "BaseTypes/DateTimeTimerInit.h"
 //---------------------------------------------------------------------------
 
 LcdNamespace::Lcd lcd;
@@ -35,13 +39,11 @@ int main(void)
 	DDRD |= _BV(DDD2);
 	PORTD |= _BV(PD2);
 	
-	//pinD7.SetAsOutput();
-	//pinD6.SetAsOutput();
-	//pinD5.SetAsOutput();
-	
 	sei();
 	
 	lcd.LCD_Init();
+	Device::lcdPtr = &lcd;
+	
 	lcd.LCD_Clear();
 	lcd.LCD_SendString("Hello Test!");
 	
@@ -49,6 +51,45 @@ int main(void)
 	
 	dateTime receivedDayTime = get_date_time();
 	//rtc_init();
+	
+	KeyMatrixController keyMatrixController = KeyMatrixController();
+	KeyMatrixController* keyMatrixControllerPtr = &keyMatrixController;
+	keyMatrixControllerPtr->Initialize(100);
+
+	keyMatrixControllerPtr->horizontalPins[0] = &pinD3;
+	keyMatrixControllerPtr->horizontalPins[1] = &pinC0;
+	keyMatrixControllerPtr->horizontalPins[2] = &pinC1;
+	keyMatrixControllerPtr->horizontalPins[3] = &pinC3;
+	
+	keyMatrixControllerPtr->verticalPins[0] = &pinC4;
+	keyMatrixControllerPtr->verticalPins[1] = &pinB0;
+	keyMatrixControllerPtr->verticalPins[2] = &pinC2;
+	
+	
+	Device::ButtonPtr1= &keyMatrixControllerPtr->matrixButtons[0][0];
+	Device::ButtonPtr2= &keyMatrixControllerPtr->matrixButtons[0][1];
+	Device::ButtonPtr3= &keyMatrixControllerPtr->matrixButtons[0][2];
+	Device::ButtonPtr4= &keyMatrixControllerPtr->matrixButtons[1][0];
+	Device::ButtonPtr5= &keyMatrixControllerPtr->matrixButtons[1][1];
+	Device::ButtonPtr6= &keyMatrixControllerPtr->matrixButtons[1][2];
+	Device::ButtonPtr7= &keyMatrixControllerPtr->matrixButtons[2][0];
+	Device::ButtonPtr8= &keyMatrixControllerPtr->matrixButtons[2][1];
+	Device::ButtonPtr9= &keyMatrixControllerPtr->matrixButtons[2][2];
+	Device::ButtonPtrStar= &keyMatrixControllerPtr->matrixButtons[3][0];
+	Device::ButtonPtr0= &keyMatrixControllerPtr->matrixButtons[3][1];
+	Device::ButtonPtrSharp= &keyMatrixControllerPtr->matrixButtons[3][2];
+	
+	MainMode mainMode = MainMode();	
+	keyMatrixControllerPtr->AttachConsumer(&mainMode);
+	
+	
+	
+	//InitTimer();
+	//Device::InitTimer0();
+	//DateTime::Initialize(1, 5);	
+	DateTime::Initialize(260, 4);
+	Device::InitTimer2();
+	
 	
 	if(receivedDayTime.hour == 0 && receivedDayTime.minute == 0 && receivedDayTime.second == 0 )
 	{
@@ -85,54 +126,29 @@ int main(void)
 	//LCD_WriteCom(0x01);
 	//_delay_ms(2);
 	
+	pinA4.SetAsOutput();
 	
-    while (1) 
-    {
-		//PORTD |= _BV(PD2);
-		//_delay_ms(2000);
-		//
-		//PORTD &= ~_BV(PD2);
-		//_delay_ms(2000);
-		
-		dateTime receivedDayTime = get_date_time();
-		
-		if(DateTimeEquals(lastDateTime, receivedDayTime) == 0)
-		{
-			lastDateTime = receivedDayTime;
-
-			lcd.LCD_Clear();
-			
-			sprintf(buffer, "%i:%i:%i", receivedDayTime.hour, receivedDayTime.minute, receivedDayTime.second);
-			lcd.LCD_SendString(buffer);
-			
-			//lcd.LCD_SendString("ABCDEFGHI");
-			
-			//lcd.LCD_Goto(15, 0);
-			//lcd.LCD_SendString(" ");
-			//lcd.LCD_SendString("Day number:");
-			//sprintf(buffer, "%.1d", lastDateTime.day);
-			//lcd.LCD_SendString(buffer);
-			
-			//lcd.LCD_Goto(17, 0);
-			//lcd.LCD_SendString("T");
-			
-			lcd.LCD_Goto(17, 0);
-			lcd.LCD_SendString("Day number:");
-			sprintf(buffer, "%.1d", lastDateTime.day);
-			lcd.LCD_SendString(buffer);
-			
-			lcd.LCD_WriteCom(0xc0);
-			
-			//char* bfrPtr = buffer + 1;
-			//sprintf(bfrPtr, "%.2d:%.2d:%.2d        %i.%i.%.2d", receivedDayTime.hour, receivedDayTime.minute, receivedDayTime.second, receivedDayTime.date, receivedDayTime.month, receivedDayTime.year);
-			
-			sprintf(buffer, "%.2d:%.2d:%.2d        %i.%i.%.2d", receivedDayTime.hour, receivedDayTime.minute, receivedDayTime.second, receivedDayTime.date, receivedDayTime.month, receivedDayTime.year);
-			lcd.LCD_SendString(buffer);
-			
-			lcd.LCD_Goto(19, 1);
-			
-			_delay_ms(100);
-		}
-    }
+	//lcd.LCD_Clear();
+	//lcd.LCD_SendString("Ready for launch");
+	//_delay_ms(2000);
+	//
+	//
+	//pinA4.SetHightLevel();
+	//
+	//lcd.LCD_Clear();
+	//lcd.LCD_SendString("Launched!");
+	//_delay_ms(5000);
+	//
+	//pinA4.SetLowLevel();
+	//
+	//lcd.LCD_Clear();
+	//lcd.LCD_SendString("Finished!");
+	//_delay_ms(2000);
+	
+	while(1)
+	{
+		mainMode.OnTick();
+		keyMatrixControllerPtr->ButtonsControllerOnTick();		
+	}
 }
 //---------------------------------------------------------------------------

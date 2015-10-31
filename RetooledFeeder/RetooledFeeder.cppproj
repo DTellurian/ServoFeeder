@@ -187,6 +187,48 @@
     <Compile Include="BaseTypes\RtcDefines.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Buttons\Button.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Buttons\Button.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Buttons\ButtonsController.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Buttons\ButtonsController.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Buttons\ButtonsControllerConsumer.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Buttons\ButtonsControllerDefines.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Buttons\KeyMatrixButton.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Buttons\KeyMatrixButton.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Buttons\KeyMatrixController.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Buttons\KeyMatrixController.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Buttons\SimpleButton.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Buttons\SimpleButton.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Device\Device.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Device\Device.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Device\Ports.cpp">
       <SubType>compile</SubType>
     </Compile>
@@ -205,12 +247,20 @@
     <Compile Include="main.cpp">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Modes\MainMode.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Modes\MainMode.h">
+      <SubType>compile</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Layout" />
     <Folder Include="Lcd" />
     <Folder Include="BaseTypes" />
     <Folder Include="Device" />
+    <Folder Include="Buttons" />
+    <Folder Include="Modes" />
     <Folder Include="Simulation" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
