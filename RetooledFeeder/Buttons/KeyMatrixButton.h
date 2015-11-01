@@ -24,7 +24,9 @@ class KeyMatrixButton : public Button
 		virtual uint8_t IsPressed(void);
 		
 	private:		
-		
+		KeyMatrixButton(const KeyMatrixButton& c);
+		KeyMatrixButton& operator=(const KeyMatrixButton& c);
+				
 		volatile uint8_t isHorizontalPressed;
 		volatile uint8_t isVerticalPressed;
 };

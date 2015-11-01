@@ -31,7 +31,8 @@ class KeyMatrixController : public ButtonsController
 		
 		KeyMatrixButton matrixButtons[KeyMatrixHorizontalCount][KeyMatrixVerticalCount];
 	private:
-		
+		KeyMatrixController(const KeyMatrixController& c);
+		KeyMatrixController& operator=(const KeyMatrixController& c);
 		
 };
 //---------------------------------------------------------------------------

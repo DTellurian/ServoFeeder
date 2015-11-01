@@ -52,7 +52,7 @@ int main(void)
 	dateTime receivedDayTime = get_date_time();
 	//rtc_init();
 	
-	KeyMatrixController keyMatrixController = KeyMatrixController();
+	KeyMatrixController keyMatrixController;
 	KeyMatrixController* keyMatrixControllerPtr = &keyMatrixController;
 	keyMatrixControllerPtr->Initialize(100);
 

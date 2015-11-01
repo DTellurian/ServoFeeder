@@ -263,5 +263,10 @@
     <Folder Include="Modes" />
     <Folder Include="Simulation" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Simulation\RetooledFeeder.DSN">
+      <SubType>compile</SubType>
+    </None>
+  </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>
