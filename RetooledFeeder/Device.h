@@ -10,8 +10,10 @@
 #define __DEVICE_H__
 //---------------------------------------------------------------------------
 
-#include "../Buttons/SimpleButton.h"
-#include "../Lcd/Lcd.h"
+#include "Buttons/SimpleButton.h"
+#include "Lcd/Lcd.h"
+#include "Buttons/KeyMatrixController.h"
+#include "Modes/MainMode.h"
 //---------------------------------------------------------------------------
 
 class Device
@@ -38,13 +40,18 @@ class Device
 		static Button* ButtonPtr0;
 		static Button* ButtonPtrSharp;
 		static LcdNamespace::Lcd* lcdPtr;
+		
+		static KeyMatrixController* keyMatrixControllerPtr;
+		static MainMode* mainModePtr;
 	
-		static void InitTimer2(void);
+		static void Initialize();
 	protected:
 	private:
 		Device();
 		Device( const Device &c );
 		Device& operator=( const Device &c );
+		
+		static void InitTimer2(void);
 
 }; //Device
 //---------------------------------------------------------------------------

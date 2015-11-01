@@ -223,10 +223,10 @@
     <Compile Include="Buttons\SimpleButton.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Device\Device.cpp">
+    <Compile Include="Device.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Device\Device.h">
+    <Compile Include="Device.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Device\Ports.cpp">
@@ -264,6 +264,12 @@
     <Folder Include="Simulation" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Layout\MCPart.lay">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Layout\Watering.lay">
+      <SubType>compile</SubType>
+    </None>
     <None Include="Simulation\RetooledFeeder.DSN">
       <SubType>compile</SubType>
     </None>

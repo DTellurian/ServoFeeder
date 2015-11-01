@@ -13,7 +13,7 @@
 
 #include "MainMode.h"
 #include "../BaseTypes/DateTime.h"
-#include "../Device/Device.h"
+#include "../Device.h"
 #include "../Buttons/Button.h"
 //---------------------------------------------------------------------------
 
