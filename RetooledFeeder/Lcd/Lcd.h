@@ -20,7 +20,7 @@ namespace LcdNamespace
 
 //макросы
 /*позиционирование курсора*/
-//#define LCD_Goto(x,y) LCD_WriteCom(((((y)& 1)*0x40)+((x)& 15))|128) 
+//#define LCD_Goto(x,y) LCD_WriteCom(((((y)& 1)*0x40)+((x)& 15))|128) //из-за 15 нельзя было перейти на позиция больше 15, сейчас ограничение в 32
 #define LCD_Goto(x,y) LCD_WriteCom(((((y)& 1)*0x40)+((x)&0b00011111))|128) 
 
 //---------------------------------------------------------------------------
@@ -35,7 +35,6 @@ class Lcd
 		void LCD_WriteCom(unsigned char data); //посылает команду жкд
 		void LCD_SendStringFlash(char *str); 
 		void LCD_SendString(char *str);
-		void LCD_GoToXY(int x, int y);
 	protected:
 	private:
 		Lcd(const Lcd&);
