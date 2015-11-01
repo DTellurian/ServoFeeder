@@ -162,11 +162,11 @@ static void write_byte(uint8_t byte)
 }
  
 //Read 7 bytes of Calendar/Clock data
-static dateTime read_dt_block(void)
+static RTCDateTime read_dt_block(void)
 {
     uint8_t dt_byte;
     uint8_t byte_pos;
-    dateTime dt = {0};
+    RTCDateTime dt = {0};
  
     //Always do a reset before a new operation
     reset();
@@ -213,7 +213,7 @@ static dateTime read_dt_block(void)
 }
  
 //Write 8 bytes of Calendar/Clock data
-static void write_dt_block(dateTime dt)
+static void write_dt_block(RTCDateTime dt)
 {
     uint8_t dt_byte;
     uint8_t byte_pos;
@@ -270,7 +270,7 @@ static void write_dt_block(dateTime dt)
                                         3. Disable Write Protection
   No Calendar/Clock will be changed
 ********************************************************************/
-void rtc_init(void)
+void RTC::Init(void)
 {
     uint8_t byte_second;
     uint8_t byte_hour;
@@ -297,11 +297,12 @@ void rtc_init(void)
     write_byte(0);
     reset();
 }
+//---------------------------------------------------------------------------
  
 //Interface function to read Calendar/Clock value
-dateTime get_date_time(void)
+RTCDateTime RTC::GetDateTime(void)
 {
-    dateTime dt;
+    RTCDateTime dt;
      
     //Read raw calendar/clock block from DS1302
     dt = read_dt_block();
@@ -323,9 +324,10 @@ dateTime get_date_time(void)
  
     return dt;
 }
+//---------------------------------------------------------------------------
  
 //Interface function to set Calendar/Clock value
-void set_date_time(dateTime dt)
+void RTC::SetDateTime(RTCDateTime dt)
 {
     /**************************************************************
      Convert from normal decimal Calendar/Clock value to BCD. Hour
@@ -344,11 +346,22 @@ void set_date_time(dateTime dt)
  
     write_dt_block(dt);
 }
+//---------------------------------------------------------------------------
 
-uint8_t DateTimeEquals(dateTime &left, dateTime &right)
+uint8_t RTC::DateTimeEquals(RTCDateTime &left, RTCDateTime &right)
 {
 	if(left.year == right.year && left.month == right.month && left.date == right.date && left.hour == right.hour && left.minute == right.minute && left.second == right.second )
 		return 1;
 	else
 		return 0;
 }
+//---------------------------------------------------------------------------
+
+uint8_t RTC::TimeEquals(RTCDateTime &left, RTCDateTime &right)
+{
+	if(left.hour == right.hour && left.minute == right.minute && left.second == right.second )
+		return 1;
+	else
+		return 0;
+}
+//---------------------------------------------------------------------------

@@ -15,6 +15,7 @@
 #include "../BaseTypes/DateTime.h"
 #include "../Device.h"
 #include "../Buttons/Button.h"
+#include "../BaseTypes/RTCHelper.h"
 //---------------------------------------------------------------------------
 
 char mainBuffer[33];
@@ -34,9 +35,10 @@ MainMode::~MainMode()
 
 void MainMode::OnTick()
 {
-	dateTime receivedDayTime = get_date_time();
+	RTCDateTime receivedDayTime = RTCHelper::LoadDateTime();
+	//RTC::GetDateTime();
 			
-	if(DateTimeEquals(lastDateTime, receivedDayTime) == 0)
+	if(RTC::DateTimeEquals(lastDateTime, receivedDayTime) == 0)
 	{
 		cli();
 		lastDateTime = receivedDayTime;
@@ -48,8 +50,8 @@ void MainMode::OnTick()
 				
 		Device::lcdPtr->LCD_Goto(0, 0);
 		//sprintf(mainBuffer, "MS:%.8d", DateTime::milliseconds / 1000);
-		sprintf(mainBuffer, "Loc:%.2d:%.2d:%.2d", DateTime::CurrentTime.GetHours(), DateTime::CurrentTime.GetMinutes(), DateTime::CurrentTime.GetSeconds());
-		Device::lcdPtr->LCD_SendString(mainBuffer);
+		//sprintf(mainBuffer, "Loc:%.2d:%.2d:%.2d", DateTime::CurrentTime.GetHours(), DateTime::CurrentTime.GetMinutes(), DateTime::CurrentTime.GetSeconds());
+		//Device::lcdPtr->LCD_SendString(mainBuffer);
 				
 		Device::lcdPtr->LCD_Goto(17, 0);
 		Device::lcdPtr->LCD_SendString("Day number:");
@@ -76,7 +78,7 @@ void MainMode::ProceedButtonFire(Button* buttonPtr, uint8_t isSealedFire, uint8_
 {
 	Device::lcdPtr->LCD_Clear();
 	
-	//dateTime receivedDayTime = get_date_time();
+	//RTCDateTime receivedDayTime = get_date_time();
 //
 	//if(buttonPtr == Device::ButtonPtr1)
 	//receivedDayTime.hour++;

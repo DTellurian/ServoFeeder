@@ -34,7 +34,7 @@ class MainMode : public ButtonsControllerConsumer
 		//MainMode( const MainMode &c );
 		MainMode& operator=( const MainMode &c );
 		
-		dateTime lastDateTime;
+		RTCDateTime lastDateTime;
 
 }; //MainMode
 //---------------------------------------------------------------------------

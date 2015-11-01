@@ -15,10 +15,10 @@
 #include "Device/Ports.h"
 //---------------------------------------------------------------------------
 
-LcdNamespace::Lcd lcd;
+Lcd Device::lcd;
 char buffer[33];
-KeyMatrixController keyMatrixController;
-MainMode mainMode;
+KeyMatrixController Device::keyMatrixController;
+MainMode Device::mainMode;
 //---------------------------------------------------------------------------
 
 // default destructor
@@ -92,7 +92,7 @@ void Device::Initialize()
 	keyMatrixControllerPtr->AttachConsumer(mainModePtr);
 	
 	
-	dateTime receivedDayTime = get_date_time();
+	RTCDateTime receivedDayTime = RTC::GetDateTime();
 		
 	if(receivedDayTime.hour == 0 && receivedDayTime.minute == 0 && receivedDayTime.second == 0 )
 	{
@@ -100,7 +100,7 @@ void Device::Initialize()
 		lcd.LCD_SendString("Start Clock init");
 		_delay_ms(500);
 
-		dateTime dt;
+		RTCDateTime dt;
 			
 		dt.hour = 1;
 		dt.minute = 31;
@@ -111,8 +111,8 @@ void Device::Initialize()
 		dt.year = 15;
 		dt.day = 5;
 			
-		rtc_init();
-		set_date_time(dt);
+		RTC::Init();
+		RTC::SetDateTime(dt);
 
 		lcd.LCD_SendString("Clock init finish!");
 		_delay_ms(2000);
@@ -123,7 +123,7 @@ void Device::Initialize()
 	lcd.LCD_SendString("Started!");
 	_delay_ms(2000);
 		
-	dateTime lastDateTime = dateTime();
+	RTCDateTime lastDateTime = RTCDateTime();
 		
 	lcd.LCD_WriteCom(0b00001111);
 	//LCD_WriteCom(0x01);
@@ -131,7 +131,8 @@ void Device::Initialize()
 	
 	pinA4.SetAsOutput();	
 	
-	DateTime::Initialize(260, 4);
+	//DateTime::Initialize(260, 4);
+	DateTime::Initialize(4);
 	Device::InitTimer2();
 }
 //---------------------------------------------------------------------------
@@ -148,6 +149,6 @@ void Device::InitTimer2(void)
 ISR(TIMER2_COMP_vect)
 {
 	DateTime::OnMillisecondsTick();
-	DateTime::OnSecondsTick();
+	//DateTime::OnSecondsTick();
 }
 //---------------------------------------------------------------------------

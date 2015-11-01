@@ -16,6 +16,9 @@
 #include "Modes/MainMode.h"
 //---------------------------------------------------------------------------
 
+using namespace LcdNamespace;
+//---------------------------------------------------------------------------
+
 class Device
 {
 	//variables
@@ -39,7 +42,7 @@ class Device
 		static Button* ButtonPtrStar;
 		static Button* ButtonPtr0;
 		static Button* ButtonPtrSharp;
-		static LcdNamespace::Lcd* lcdPtr;
+		static Lcd* lcdPtr;
 		
 		static KeyMatrixController* keyMatrixControllerPtr;
 		static MainMode* mainModePtr;
@@ -50,6 +53,10 @@ class Device
 		Device();
 		Device( const Device &c );
 		Device& operator=( const Device &c );
+		
+		static Lcd lcd;
+		static KeyMatrixController keyMatrixController;
+		static MainMode mainMode;
 		
 		static void InitTimer2(void);
 
