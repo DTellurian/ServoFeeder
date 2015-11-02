@@ -348,20 +348,3 @@ void RTC::SetDateTime(RTCDateTime dt)
 }
 //---------------------------------------------------------------------------
 
-uint8_t RTC::DateTimeEquals(RTCDateTime &left, RTCDateTime &right)
-{
-	if(left.year == right.year && left.month == right.month && left.date == right.date && left.hour == right.hour && left.minute == right.minute && left.second == right.second )
-		return 1;
-	else
-		return 0;
-}
-//---------------------------------------------------------------------------
-
-uint8_t RTC::TimeEquals(RTCDateTime &left, RTCDateTime &right)
-{
-	if(left.hour == right.hour && left.minute == right.minute && left.second == right.second )
-		return 1;
-	else
-		return 0;
-}
-//---------------------------------------------------------------------------

@@ -20,7 +20,11 @@ class RTCHelper
 {
 	//variables
 	public:
-		static RTCDateTime LoadDateTime(void);
+		static RTCDateTime LoadDateTime(uint8_t forceLoad);
+		
+		static uint8_t DateTimeEquals(RTCDateTime &left, RTCDateTime &right);
+		static uint8_t TimeEquals(RTCDateTime &left, RTCDateTime &right);
+		
 		static void TimeWithSecondsToString(char* stringPtr, RTCDateTime dateTime);		
 		static void DateToString(char* stringPtr, RTCDateTime dateTime);
 	

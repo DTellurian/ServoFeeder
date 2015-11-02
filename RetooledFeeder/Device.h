@@ -31,37 +31,34 @@ class Device
 	public:	
 		~Device();
 	
-		static Button* ButtonPtr1;
-		static Button* ButtonPtr2;
-		static Button* ButtonPtr3;
-		static Button* ButtonPtr4;
-		static Button* ButtonPtr5;
-		static Button* ButtonPtr6;
-		static Button* ButtonPtr7;
-		static Button* ButtonPtr8;
-		static Button* ButtonPtr9;
-		static Button* ButtonPtrStar;
+		//static Button* ButtonPtr1;
+		//static Button* ButtonPtr2;
+		//static Button* ButtonPtr3;
+		//static Button* ButtonPtr4;
+		//static Button* ButtonPtr5;
+		//static Button* ButtonPtr6;
+		//static Button* ButtonPtr7;
+		//static Button* ButtonPtr8;
+		//static Button* ButtonPtr9;
+		//static Button* ButtonPtrStar;
 		static Button* ButtonPtr0;
-		static Button* ButtonPtrSharp;
-		static Lcd* lcdPtr;
-		
-		//static KeyMatrixController* keyMatrixControllerPtr;
-		static MainMode* mainModePtr;
-		static LcdController* lcdControllerPtr;
+		//static Button* ButtonPtrSharp;
 	
 		static void Initialize();
+						
+		static Lcd lcd;
+		static KeyMatrixController keyMatrixController;
+		static MainMode mainMode;
+		//static LcdController lcdController;
+		
+		static char lcdBuffer[18];
+		
+		static Pin* outputPin3Ptr;
 	protected:
 	private:
 		Device();
 		Device( const Device &c );
 		Device& operator=( const Device &c );
-		
-		static Lcd lcd;
-		static LcdController lcdController;
-		
-		
-		//static KeyMatrixController keyMatrixController;		
-		static MainMode mainMode;
 		
 		static void InitTimer2(void);
 

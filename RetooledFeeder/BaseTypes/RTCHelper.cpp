@@ -17,16 +17,35 @@ uint64_t RTCHelper::nextTimeToLoadDateTime = 0;
 RTCDateTime RTCHelper::lastLoadedDateTime = RTCDateTime();
 //---------------------------------------------------------------------------
 
-RTCDateTime RTCHelper::LoadDateTime(void)
+RTCDateTime RTCHelper::LoadDateTime(uint8_t forceLoad)
 {
 	uint64_t currentMilliseconds = DateTime::milliseconds;
-	if(currentMilliseconds > nextTimeToLoadDateTime)
+	
+	if(currentMilliseconds > nextTimeToLoadDateTime || forceLoad)
 	{
 		lastLoadedDateTime = RTC::GetDateTime();
 		nextTimeToLoadDateTime = currentMilliseconds + DATETIME_UPDATE_PERIOD_MILLISECONDS;
 	}
 	
 	return lastLoadedDateTime;
+}
+//---------------------------------------------------------------------------
+
+uint8_t RTCHelper::DateTimeEquals(RTCDateTime &left, RTCDateTime &right)
+{
+	if(left.year == right.year && left.month == right.month && left.date == right.date && left.hour == right.hour && left.minute == right.minute && left.second == right.second )
+		return 1;
+	else
+		return 0;
+}
+//---------------------------------------------------------------------------
+
+uint8_t RTCHelper::TimeEquals(RTCDateTime &left, RTCDateTime &right)
+{
+	if(left.hour == right.hour && left.minute == right.minute && left.second == right.second )
+		return 1;
+	else
+		return 0;
 }
 //---------------------------------------------------------------------------
 
