@@ -16,17 +16,27 @@
 //---------------------------------------------------------------------------
 
 Lcd Device::lcd;
+LcdController Device::lcdController(&Device::lcd);
+
 char buffer[33];
-KeyMatrixController Device::keyMatrixController;
-MainMode Device::mainMode;
+//KeyMatrixController Device::keyMatrixController;
+
+//KeyMatrixController* Device::keyMatrixControllerPtr;
+MainMode* Device::mainModePtr;
+LcdController* Device::lcdControllerPtr;
+
+MainMode Device::mainMode(&Device::lcdController);
+//MainMode Device::mainMode;
 //---------------------------------------------------------------------------
 
 // default destructor
 Device::~Device()
 {
 } //~Device
-
 //---------------------------------------------------------------------------
+
+LcdNamespace::Lcd* Device::lcdPtr;
+
 
 Button* Device::ButtonPtr1;
 Button* Device::ButtonPtr2;
@@ -40,16 +50,13 @@ Button* Device::ButtonPtr9;
 Button* Device::ButtonPtrStar;
 Button* Device::ButtonPtr0;
 Button* Device::ButtonPtrSharp;
-LcdNamespace::Lcd* Device::lcdPtr;
-
-KeyMatrixController* Device::keyMatrixControllerPtr;
-MainMode* Device::mainModePtr;
 //---------------------------------------------------------------------------
 
 void Device::Initialize()
 {
 	Device::mainModePtr = &mainMode;
-	Device::keyMatrixControllerPtr = &keyMatrixController;
+	//Device::keyMatrixControllerPtr = &keyMatrixController;
+	Device::lcdControllerPtr = &lcdController;
 
 	MCUCSR = 1 << JTD;
 	MCUCSR = 1 << JTD;
@@ -60,9 +67,10 @@ void Device::Initialize()
 	Device::lcdPtr = &lcd;
 	
 	lcd.LCD_Clear();
-	lcd.LCD_SendString("Launching!");
+	//lcd.LCD_SendString("Launching!");
 	_delay_ms(2000);
 
+	/*
 	KeyMatrixController* keyMatrixControllerPtr = &keyMatrixController;
 	keyMatrixControllerPtr->Initialize(100);
 
@@ -90,7 +98,7 @@ void Device::Initialize()
 	Device::ButtonPtrSharp= &keyMatrixControllerPtr->matrixButtons[3][2];
 	
 	keyMatrixControllerPtr->AttachConsumer(mainModePtr);
-	
+	*/
 	
 	RTCDateTime receivedDayTime = RTC::GetDateTime();
 		
@@ -114,13 +122,13 @@ void Device::Initialize()
 		RTC::Init();
 		RTC::SetDateTime(dt);
 
-		lcd.LCD_SendString("Clock init finish!");
+		//lcd.LCD_SendString("Clock init finish!");
 		_delay_ms(2000);
 	}
 
 
 	lcd.LCD_Clear();
-	lcd.LCD_SendString("Started!");
+	//lcd.LCD_SendString("Started!");
 	_delay_ms(2000);
 		
 	RTCDateTime lastDateTime = RTCDateTime();

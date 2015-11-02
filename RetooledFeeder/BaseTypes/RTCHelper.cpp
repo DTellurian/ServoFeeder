@@ -6,6 +6,9 @@
 */
 //---------------------------------------------------------------------------
 
+#include <stdio.h>
+//---------------------------------------------------------------------------
+
 #include "RTCHelper.h"
 #include "DateTime.h"
 //---------------------------------------------------------------------------
@@ -24,5 +27,17 @@ RTCDateTime RTCHelper::LoadDateTime(void)
 	}
 	
 	return lastLoadedDateTime;
+}
+//---------------------------------------------------------------------------
+
+void RTCHelper::TimeWithSecondsToString(char* stringPtr, RTCDateTime dateTime)
+{	
+	sprintf(stringPtr, "%.2d:%.2d:%.2d", dateTime.hour, dateTime.minute, dateTime.second);
+}
+//---------------------------------------------------------------------------
+
+void RTCHelper::DateToString(char* stringPtr, RTCDateTime dateTime)
+{
+	sprintf(stringPtr, "%.2d:%.2d:%.2d", dateTime.date, dateTime.month, dateTime.year);
 }
 //---------------------------------------------------------------------------

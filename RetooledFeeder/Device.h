@@ -14,6 +14,7 @@
 #include "Lcd/Lcd.h"
 #include "Buttons/KeyMatrixController.h"
 #include "Modes/MainMode.h"
+#include "Lcd/LcdController.h"
 //---------------------------------------------------------------------------
 
 using namespace LcdNamespace;
@@ -44,8 +45,9 @@ class Device
 		static Button* ButtonPtrSharp;
 		static Lcd* lcdPtr;
 		
-		static KeyMatrixController* keyMatrixControllerPtr;
+		//static KeyMatrixController* keyMatrixControllerPtr;
 		static MainMode* mainModePtr;
+		static LcdController* lcdControllerPtr;
 	
 		static void Initialize();
 	protected:
@@ -55,7 +57,10 @@ class Device
 		Device& operator=( const Device &c );
 		
 		static Lcd lcd;
-		static KeyMatrixController keyMatrixController;
+		static LcdController lcdController;
+		
+		
+		//static KeyMatrixController keyMatrixController;		
 		static MainMode mainMode;
 		
 		static void InitTimer2(void);

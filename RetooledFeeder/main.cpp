@@ -36,7 +36,8 @@ int main(void)
 	while(1)
 	{
 		Device::mainModePtr->OnTick();
-		Device::keyMatrixControllerPtr->ButtonsControllerOnTick();		
+		//Device::keyMatrixControllerPtr->ButtonsControllerOnTick();
+		Device::lcdControllerPtr->Redraw(0);
 	}
 }
 //---------------------------------------------------------------------------

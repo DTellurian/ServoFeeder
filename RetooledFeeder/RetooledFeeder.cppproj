@@ -229,10 +229,31 @@
     <Compile Include="Device\Ports.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Lcd\BaseLcdControl.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Lcd\BaseLcdControl.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Lcd\DateTimeControl.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Lcd\DateTimeControl.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Lcd\Lcd.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Lcd\Lcd.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Lcd\LcdController.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Lcd\LcdController.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Lcd\LcdControllerDefines.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Lcd\LcdDefines.h">

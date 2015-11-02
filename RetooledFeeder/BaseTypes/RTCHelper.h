@@ -21,6 +21,8 @@ class RTCHelper
 	//variables
 	public:
 		static RTCDateTime LoadDateTime(void);
+		static void TimeWithSecondsToString(char* stringPtr, RTCDateTime dateTime);		
+		static void DateToString(char* stringPtr, RTCDateTime dateTime);
 	
 	protected:
 	private:
