@@ -8,8 +8,10 @@
 
 #ifndef __RTC_H__
 #define __RTC_H__
+//---------------------------------------------------------------------------
 
 #include <stdint.h>
+//---------------------------------------------------------------------------
 
 //Data type to hold calendar/clock data
 typedef struct
@@ -21,7 +23,8 @@ typedef struct
     uint8_t month;
     uint8_t day;
     uint8_t year;
-} dateTime;
+} RTCDateTime;
+//---------------------------------------------------------------------------
  
 /*******************************************************************
   Interface function to initialize RTC: 1. Disable Clock Halt
@@ -29,14 +32,26 @@ typedef struct
                                         3. Disable Write Protection
   No Calendar/Clock will be changed
 ********************************************************************/
-void rtc_init(void);
- 
-//Interface function to read Calendar/Clock value
-dateTime get_date_time(void);
- 
-//Interface function to set Calendar/Clock value
-void set_date_time(dateTime dt);
+//---------------------------------------------------------------------------
 
-uint8_t DateTimeEquals(dateTime &left, dateTime &right);
+class RTC
+{
+	public:
+		static void Init(void);
+ 
+		//Interface function to read Calendar/Clock value
+		static RTCDateTime GetDateTime(void);
+ 
+		//Interface function to set Calendar/Clock value
+		static void SetDateTime(RTCDateTime dt);
 
+		static uint8_t DateTimeEquals(RTCDateTime &left, RTCDateTime &right);
+		static uint8_t TimeEquals(RTCDateTime &left, RTCDateTime &right);
+
+	private:
+		RTC();
+		RTC( const RTC &c );
+		RTC& operator=( const RTC &c );
+};
+//---------------------------------------------------------------------------
 #endif //__RTC_H__

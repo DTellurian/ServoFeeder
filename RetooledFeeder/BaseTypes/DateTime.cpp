@@ -12,33 +12,16 @@
 
 volatile uint64_t DateTime::milliseconds = 0;
 volatile uint16_t DateTime::ticksCount = 0;
-uint16_t DateTime::ticksInSecond = 0;
+//uint16_t DateTime::ticksInSecond = 0;
 uint16_t DateTime::millisecondsInTick = 0;
-CFTime DateTime::CurrentTime = CFTime();
-CFDate DateTime::CurrentDate = CFDate();
+//CFTime DateTime::CurrentTime = CFTime();
+//CFDate DateTime::CurrentDate = CFDate();
 
-void DateTime::Initialize(uint16_t ticksInSecond, uint16_t millisecondsInTick)
-{
-	DateTime::ticksInSecond = ticksInSecond;
+void DateTime::Initialize(uint16_t millisecondsInTick)
+{	
 	DateTime::millisecondsInTick = millisecondsInTick;
 	
 	//InitTimer();
-}
-//---------------------------------------------------------------------------
-
-void DateTime::OnSecondsTick(void)
-{
-	DateTime::ticksCount++;
-	
-	if(DateTime::ticksInSecond == DateTime::ticksCount)	
-	{
-		DateTime::ticksCount = 0;
-		
-		if(DateTime::CurrentTime.IsLastSecondOfDay())
-			DateTime::CurrentDate.AddDay();
-				
-		DateTime::CurrentTime.AddSecond();
-	}		
 }
 //---------------------------------------------------------------------------
 

@@ -15,18 +15,28 @@
 #include "Device/Ports.h"
 //---------------------------------------------------------------------------
 
-LcdNamespace::Lcd lcd;
+Lcd Device::lcd;
+LcdController Device::lcdController(&Device::lcd);
+
 char buffer[33];
-KeyMatrixController keyMatrixController;
-MainMode mainMode;
+//KeyMatrixController Device::keyMatrixController;
+
+//KeyMatrixController* Device::keyMatrixControllerPtr;
+MainMode* Device::mainModePtr;
+LcdController* Device::lcdControllerPtr;
+
+MainMode Device::mainMode(&Device::lcdController);
+//MainMode Device::mainMode;
 //---------------------------------------------------------------------------
 
 // default destructor
 Device::~Device()
 {
 } //~Device
-
 //---------------------------------------------------------------------------
+
+LcdNamespace::Lcd* Device::lcdPtr;
+
 
 Button* Device::ButtonPtr1;
 Button* Device::ButtonPtr2;
@@ -40,16 +50,13 @@ Button* Device::ButtonPtr9;
 Button* Device::ButtonPtrStar;
 Button* Device::ButtonPtr0;
 Button* Device::ButtonPtrSharp;
-LcdNamespace::Lcd* Device::lcdPtr;
-
-KeyMatrixController* Device::keyMatrixControllerPtr;
-MainMode* Device::mainModePtr;
 //---------------------------------------------------------------------------
 
 void Device::Initialize()
 {
 	Device::mainModePtr = &mainMode;
-	Device::keyMatrixControllerPtr = &keyMatrixController;
+	//Device::keyMatrixControllerPtr = &keyMatrixController;
+	Device::lcdControllerPtr = &lcdController;
 
 	MCUCSR = 1 << JTD;
 	MCUCSR = 1 << JTD;
@@ -60,9 +67,10 @@ void Device::Initialize()
 	Device::lcdPtr = &lcd;
 	
 	lcd.LCD_Clear();
-	lcd.LCD_SendString("Launching!");
+	//lcd.LCD_SendString("Launching!");
 	_delay_ms(2000);
 
+	/*
 	KeyMatrixController* keyMatrixControllerPtr = &keyMatrixController;
 	keyMatrixControllerPtr->Initialize(100);
 
@@ -90,9 +98,9 @@ void Device::Initialize()
 	Device::ButtonPtrSharp= &keyMatrixControllerPtr->matrixButtons[3][2];
 	
 	keyMatrixControllerPtr->AttachConsumer(mainModePtr);
+	*/
 	
-	
-	dateTime receivedDayTime = get_date_time();
+	RTCDateTime receivedDayTime = RTC::GetDateTime();
 		
 	if(receivedDayTime.hour == 0 && receivedDayTime.minute == 0 && receivedDayTime.second == 0 )
 	{
@@ -100,7 +108,7 @@ void Device::Initialize()
 		lcd.LCD_SendString("Start Clock init");
 		_delay_ms(500);
 
-		dateTime dt;
+		RTCDateTime dt;
 			
 		dt.hour = 1;
 		dt.minute = 31;
@@ -111,19 +119,19 @@ void Device::Initialize()
 		dt.year = 15;
 		dt.day = 5;
 			
-		rtc_init();
-		set_date_time(dt);
+		RTC::Init();
+		RTC::SetDateTime(dt);
 
-		lcd.LCD_SendString("Clock init finish!");
+		//lcd.LCD_SendString("Clock init finish!");
 		_delay_ms(2000);
 	}
 
 
 	lcd.LCD_Clear();
-	lcd.LCD_SendString("Started!");
+	//lcd.LCD_SendString("Started!");
 	_delay_ms(2000);
 		
-	dateTime lastDateTime = dateTime();
+	RTCDateTime lastDateTime = RTCDateTime();
 		
 	lcd.LCD_WriteCom(0b00001111);
 	//LCD_WriteCom(0x01);
@@ -131,7 +139,8 @@ void Device::Initialize()
 	
 	pinA4.SetAsOutput();	
 	
-	DateTime::Initialize(260, 4);
+	//DateTime::Initialize(260, 4);
+	DateTime::Initialize(4);
 	Device::InitTimer2();
 }
 //---------------------------------------------------------------------------
@@ -148,6 +157,6 @@ void Device::InitTimer2(void)
 ISR(TIMER2_COMP_vect)
 {
 	DateTime::OnMillisecondsTick();
-	DateTime::OnSecondsTick();
+	//DateTime::OnSecondsTick();
 }
 //---------------------------------------------------------------------------

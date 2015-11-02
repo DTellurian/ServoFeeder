@@ -11,20 +11,17 @@
 //---------------------------------------------------------------------------
 
 #include <inttypes.h>
-#include "CFTime.h"
-#include "CFDate.h"
+//#include "CFTime.h"
+//#include "CFDate.h"
 //---------------------------------------------------------------------------
 
 class DateTime
 {
 	public:
-		static void Initialize(uint16_t ticksInSecond, uint16_t millisecondsInTick);
+		static void Initialize(uint16_t millisecondsInTick);
 		
 		static void OnSecondsTick(void);
 		static void OnMillisecondsTick(void);
-		
-		static CFTime CurrentTime;
-		static CFDate CurrentDate;
 		
 		static volatile uint64_t milliseconds;
 	private:
@@ -32,7 +29,7 @@ class DateTime
 		
 		static volatile uint16_t ticksCount;
 		
-		static uint16_t ticksInSecond;
+		//static uint16_t ticksInSecond;
 		static uint16_t millisecondsInTick;			
 };
 

@@ -50,7 +50,7 @@ void InitTimer(void)
 
 ISR(TIMER2_OVF_vect)
 {
-	DateTime::OnSecondsTick();
-	//DateTime::OnMillisecondsTick();
+	//DateTime::OnSecondsTick();
+	DateTime::OnMillisecondsTick();
 }
 //---------------------------------------------------------------------------

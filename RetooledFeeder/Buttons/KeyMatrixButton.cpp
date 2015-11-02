@@ -25,7 +25,5 @@ void KeyMatrixButton::InitializeMatrixButton(ButtonsController* buttonsControlle
 uint8_t KeyMatrixButton::IsPressed(void)
 {
 	return isVerticalPressed && isHorizontalPressed;
-	//return isHorizontalPressed;
-	//return 1;
 }
 //---------------------------------------------------------------------------

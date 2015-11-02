@@ -13,6 +13,7 @@
 #include "../Buttons/ButtonsControllerConsumer.h"
 #include "../Buttons/Button.h"
 #include "../BaseTypes/rtc.h"
+#include "../Lcd/DateTimeControl.h"
 //---------------------------------------------------------------------------
 
 class MainMode : public ButtonsControllerConsumer
@@ -24,18 +25,23 @@ class MainMode : public ButtonsControllerConsumer
 
 	//functions
 	public:
-		MainMode(void);
+		//MainMode(void);
+		MainMode(LcdController* lcdControllerPtr);
+	
+		
 		~MainMode();
 										
 		void OnTick(void);
 		virtual void ProceedButtonFire(Button* buttonPtr, uint8_t isSealedFire, uint8_t sealedFireNumber, uint8_t& handled);
 	protected:
 	private:
+		//MainMode(void);
 		//MainMode( const MainMode &c );
 		MainMode& operator=( const MainMode &c );
 		
-		dateTime lastDateTime;
-
+		RTCDateTime lastDateTime;
+		
+		DateTimeControl dateTimeControl;
 }; //MainMode
 //---------------------------------------------------------------------------
 #endif //__MAINMODE_H__

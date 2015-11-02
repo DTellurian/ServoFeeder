@@ -142,18 +142,6 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BaseTypes\CFDate.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="BaseTypes\CFDate.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="BaseTypes\CFTime.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="BaseTypes\CFTime.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="BaseTypes\DateTime.cpp">
       <SubType>compile</SubType>
     </Compile>
@@ -178,13 +166,19 @@
     <Compile Include="BaseTypes\Port.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="BaseTypes\rtc.cpp">
+    <Compile Include="BaseTypes\RTC.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="BaseTypes\rtc.h">
+    <Compile Include="BaseTypes\RTC.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="BaseTypes\RtcDefines.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="BaseTypes\RTCHelper.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="BaseTypes\RTCHelper.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Buttons\Button.cpp">
@@ -235,10 +229,31 @@
     <Compile Include="Device\Ports.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Lcd\BaseLcdControl.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Lcd\BaseLcdControl.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Lcd\DateTimeControl.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Lcd\DateTimeControl.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Lcd\Lcd.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Lcd\Lcd.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Lcd\LcdController.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Lcd\LcdController.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Lcd\LcdControllerDefines.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Lcd\LcdDefines.h">
