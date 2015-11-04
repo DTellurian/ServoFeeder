@@ -53,7 +53,12 @@ class Device
 		
 		static char lcdBuffer[18];
 		
+		static Pin* outputPin1Ptr;
 		static Pin* outputPin3Ptr;
+		
+		static Pin* radionAPinPtr;
+		static Pin* radionBPinPtr;
+		static Pin* radionCPinPtr;
 	protected:
 	private:
 		Device();

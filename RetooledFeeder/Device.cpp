@@ -24,7 +24,12 @@ MainMode Device::mainMode;
 
 char Device::lcdBuffer[18];
 
+Pin* Device::outputPin1Ptr;
 Pin* Device::outputPin3Ptr;
+
+Pin* Device::radionAPinPtr;
+Pin* Device::radionBPinPtr;
+Pin* Device::radionCPinPtr;
 //---------------------------------------------------------------------------
 
 // default destructor
@@ -126,6 +131,18 @@ void Device::Initialize()
 			
 	pinA4.SetAsOutput();
 	outputPin3Ptr = &pinA4;
+	
+	pinA1.SetAsOutput();
+	outputPin1Ptr = &pinA1;
+	
+	pinB5.SetAsInputWithPullUp();
+	Device::radionAPinPtr = &pinB5;
+
+	pinB7.SetAsInputWithPullUp();
+	Device::radionBPinPtr = &pinB7;
+	
+	pinB6.SetAsInputWithPullUp();
+	Device::radionCPinPtr = &pinB6;
 	
 	//DateTime::Initialize(260, 4);
 	DateTime::Initialize(4);
