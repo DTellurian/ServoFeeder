@@ -10,8 +10,8 @@
 #define BUTTONSCONTROLLERDEFINES_H_
 //---------------------------------------------------------------------------
 
-#define ButtonsControllerButtonsCount 13
-#define ButtonsControllerConsumersCount 5
+#define ButtonsControllerButtonsCount 12
+#define ButtonsControllerConsumersCount 1
 #define KeyMatrixHorizontalCount 4
 #define KeyMatrixVerticalCount 3
 //---------------------------------------------------------------------------

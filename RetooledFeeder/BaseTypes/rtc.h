@@ -45,9 +45,6 @@ class RTC
 		//Interface function to set Calendar/Clock value
 		static void SetDateTime(RTCDateTime dt);
 
-		static uint8_t DateTimeEquals(RTCDateTime &left, RTCDateTime &right);
-		static uint8_t TimeEquals(RTCDateTime &left, RTCDateTime &right);
-
 	private:
 		RTC();
 		RTC( const RTC &c );

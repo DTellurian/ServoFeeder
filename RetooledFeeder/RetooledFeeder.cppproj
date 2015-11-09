@@ -229,6 +229,18 @@
     <Compile Include="Device\Ports.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="FeedLaunchManager.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="FeedLaunchManager.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="FeedLaunchSettings.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="FeedLaunchSettings.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Lcd\BaseLcdControl.cpp">
       <SubType>compile</SubType>
     </Compile>

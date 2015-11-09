@@ -28,6 +28,8 @@ class Button
 	
 		volatile uint8_t enabledButtonUpFire;
 		volatile uint16_t buttonUpDelayMs;
+		
+		virtual uint8_t IsPressed(void){return 0;};	
 	protected:	
 		Button(void);
 		Button(ButtonsController* buttonsControllerPtr, uint16_t delayMs);
@@ -51,7 +53,7 @@ class Button
 		volatile uint8_t sealingFireFlag;
 		volatile uint16_t sealingFireCounter;			
 		
-		virtual uint8_t IsPressed(void){return 0;};	
+		
 	private:
 		Button(const Button& c);
 		Button& operator=(const Button& c);
