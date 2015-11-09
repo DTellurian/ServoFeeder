@@ -14,7 +14,7 @@
 
 // default constructor
 FeedLaunchManager::FeedLaunchManager(void)
-	:settings(), wasLaunched(0), turnOffTime(0)
+	:settings(), wasLaunched(0), turnOffTime(0), vibrationLaunched(0), vibrationOffTime(0)
 {
 	
 } //FeedLaunchManager
@@ -46,6 +46,16 @@ void FeedLaunchManager::ProceedTick(void)
 	{
 		Device::outputPin3Ptr->SetLowLevel();
 		wasLaunched = 0;
+		
+		vibrationLaunched = 1;
+		Device::outputPin4Ptr->SetHightLevel();
+		vibrationOffTime = DateTime::milliseconds + 3000;
 	}
+	
+	if(vibrationLaunched && DateTime::milliseconds > vibrationOffTime)
+	{
+		Device::outputPin4Ptr->SetLowLevel();
+		vibrationLaunched = 0;
+	}	
 }
 //---------------------------------------------------------------------------

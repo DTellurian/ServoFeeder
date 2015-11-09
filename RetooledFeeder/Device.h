@@ -55,6 +55,7 @@ class Device
 		
 		static Pin* outputPin1Ptr;
 		static Pin* outputPin3Ptr;
+		static Pin* outputPin4Ptr;
 		
 		static Pin* radionAPinPtr;
 		static Pin* radionBPinPtr;

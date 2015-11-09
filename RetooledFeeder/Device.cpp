@@ -26,6 +26,7 @@ char Device::lcdBuffer[18];
 
 Pin* Device::outputPin1Ptr;
 Pin* Device::outputPin3Ptr;
+Pin* Device::outputPin4Ptr;
 
 Pin* Device::radionAPinPtr;
 Pin* Device::radionBPinPtr;
@@ -128,12 +129,15 @@ void Device::Initialize()
 	RTCDateTime lastDateTime = RTCDateTime();
 		
 	//lcd.LCD_WriteCom(0b00001111);Отображение курсора, мигание курсора!	
+
+	pinA1.SetAsOutput();
+	outputPin1Ptr = &pinA1;
 			
 	pinA4.SetAsOutput();
 	outputPin3Ptr = &pinA4;
 	
-	pinA1.SetAsOutput();
-	outputPin1Ptr = &pinA1;
+	pinA3.SetAsOutput();	
+	outputPin4Ptr = &pinA3;
 	
 	pinB5.SetAsInputWithPullUp();
 	Device::radionAPinPtr = &pinB5;

@@ -36,7 +36,7 @@ class MainMode : public ButtonsControllerConsumer
 		void OnTick(void);
 		virtual void ProceedButtonFire(Button* buttonPtr, uint8_t isSealedFire, uint8_t sealedFireNumber, uint8_t& handled);
 		
-		void EnterMode(FeedLaunchSettings& feed1, FeedLaunchSettings& feed2, FeedLaunchSettings& feed3, FeedLaunchSettings& feed4);
+		void EnterMode(FeedLaunchSettings& feed1, FeedLaunchSettings& feed2, FeedLaunchSettings& feed3, FeedLaunchSettings& feed4, FeedLaunchSettings& feed5);
 	protected:
 	private:
 		//MainMode(void);
@@ -53,6 +53,7 @@ class MainMode : public ButtonsControllerConsumer
 		FeedLaunchManager feedLaunchManager2;
 		FeedLaunchManager feedLaunchManager3;
 		FeedLaunchManager feedLaunchManager4;
+		FeedLaunchManager feedLaunchManager5;
 }; //MainMode
 //---------------------------------------------------------------------------
 #endif //__MAINMODE_H__

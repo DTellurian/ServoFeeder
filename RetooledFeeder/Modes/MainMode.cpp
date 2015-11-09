@@ -23,7 +23,7 @@
 // default constructor
 MainMode::MainMode(void)
 //MainMode::MainMode(LcdController* lcdControllerPtr)
-	:lastDateTime(), feedLaunchManager1(), feedLaunchManager2(), feedLaunchManager3(), feedLaunchManager4()
+	:lastDateTime(), feedLaunchManager1(), feedLaunchManager2(), feedLaunchManager3(), feedLaunchManager4(), feedLaunchManager5()
 	//, dateTimeControl(lcdControllerPtr, 8, 0)
 {
 } //MainMode
@@ -43,6 +43,7 @@ void MainMode::OnTick()
 	feedLaunchManager2.ProceedTick();
 	feedLaunchManager3.ProceedTick();
 	feedLaunchManager4.ProceedTick();
+	feedLaunchManager5.ProceedTick();
 	
 	//dateTimeControl.SetTime(receivedDayTime);
 	//dateTimeControl.CopyToLcdController();
@@ -103,7 +104,7 @@ void MainMode::ProceedButtonFire(Button* buttonPtr, uint8_t isSealedFire, uint8_
 }
 //---------------------------------------------------------------------------
 
-void MainMode::EnterMode(FeedLaunchSettings& feed1, FeedLaunchSettings& feed2, FeedLaunchSettings& feed3, FeedLaunchSettings& feed4)
+void MainMode::EnterMode(FeedLaunchSettings& feed1, FeedLaunchSettings& feed2, FeedLaunchSettings& feed3, FeedLaunchSettings& feed4, FeedLaunchSettings& feed5)
 {
 	Device::lcd.LCD_Clear();
 	DrawDate();
@@ -120,10 +121,14 @@ void MainMode::EnterMode(FeedLaunchSettings& feed1, FeedLaunchSettings& feed2, F
 	Device::lcd.LCD_Goto(25, 1);
 	DrawFeedInfo(feed4);
 	
+	Device::lcd.LCD_Goto(16, 1);
+	DrawFeedInfo(feed5);
+	
 	feedLaunchManager1.SetSettings(feed1);
 	feedLaunchManager2.SetSettings(feed2);
 	feedLaunchManager3.SetSettings(feed3);
 	feedLaunchManager4.SetSettings(feed4);
+	feedLaunchManager5.SetSettings(feed5);
 }
 //---------------------------------------------------------------------------
 
