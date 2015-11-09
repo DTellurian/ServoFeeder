@@ -12,9 +12,16 @@
 #include "BaseTypes/DateTime.h"
 //---------------------------------------------------------------------------
 
+uint8_t FeedLaunchManager::wasLaunched = 0;
+uint64_t FeedLaunchManager::turnOffTime = 0;
+uint8_t FeedLaunchManager::vibrationLaunched = 0;
+uint64_t FeedLaunchManager::vibrationOffTime = 0;
+		
 // default constructor
 FeedLaunchManager::FeedLaunchManager(void)
-	:settings(), wasLaunched(0), turnOffTime(0), vibrationLaunched(0), vibrationOffTime(0)
+	:settings()
+	//, wasLaunched(0), turnOffTime(0)
+	//, vibrationLaunched(0), vibrationOffTime(0)
 {
 	
 } //FeedLaunchManager

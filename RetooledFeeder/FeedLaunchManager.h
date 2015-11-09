@@ -34,11 +34,11 @@ class FeedLaunchManager
 
 
 		FeedLaunchSettings settings;
-		uint8_t wasLaunched;
-		uint64_t turnOffTime;
+		static uint8_t wasLaunched;
+		static uint64_t turnOffTime;
 		
-		uint8_t vibrationLaunched;
-		uint64_t vibrationOffTime;
+		static uint8_t vibrationLaunched;
+		static uint64_t vibrationOffTime;
 }; //FeedLaunchManager
 //---------------------------------------------------------------------------
 #endif //__FEEDLAUNCHMANAGER_H__

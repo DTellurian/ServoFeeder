@@ -29,7 +29,7 @@ Pin* Device::outputPin3Ptr;
 Pin* Device::outputPin4Ptr;
 
 Pin* Device::radionAPinPtr;
-Pin* Device::radionBPinPtr;
+//Pin* Device::radionBPinPtr;
 Pin* Device::radionCPinPtr;
 //---------------------------------------------------------------------------
 
@@ -49,7 +49,7 @@ Device::~Device()
 //Button* Device::ButtonPtr7;
 //Button* Device::ButtonPtr8;
 //Button* Device::ButtonPtr9;
-//Button* Device::ButtonPtrStar;
+Button* Device::ButtonPtrStar;
 Button* Device::ButtonPtr0;
 //Button* Device::ButtonPtrSharp;
 //---------------------------------------------------------------------------
@@ -89,7 +89,7 @@ void Device::Initialize()
 	//Device::ButtonPtr7= &keyMatrixController.matrixButtons[2][0];
 	//Device::ButtonPtr8= &keyMatrixController.matrixButtons[2][1];
 	//Device::ButtonPtr9= &keyMatrixController.matrixButtons[2][2];
-	//Device::ButtonPtrStar= &keyMatrixController.matrixButtons[3][0];
+	Device::ButtonPtrStar= &keyMatrixController.matrixButtons[3][0];
 	Device::ButtonPtr0= &keyMatrixController.matrixButtons[3][1];
 	//Device::ButtonPtrSharp= &keyMatrixController.matrixButtons[3][2];
 	
@@ -124,7 +124,7 @@ void Device::Initialize()
 
 	//lcd.LCD_Clear();
 	lcd.LCD_SendString("Started!");
-	_delay_ms(10000);
+	_delay_ms(5000);
 		
 	RTCDateTime lastDateTime = RTCDateTime();
 		
@@ -142,8 +142,8 @@ void Device::Initialize()
 	pinB5.SetAsInputWithPullUp();
 	Device::radionAPinPtr = &pinB5;
 
-	pinB7.SetAsInputWithPullUp();
-	Device::radionBPinPtr = &pinB7;
+	//pinB7.SetAsInputWithPullUp();
+	//Device::radionBPinPtr = &pinB7;
 	
 	pinB6.SetAsInputWithPullUp();
 	Device::radionCPinPtr = &pinB6;

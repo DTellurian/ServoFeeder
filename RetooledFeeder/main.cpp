@@ -69,7 +69,9 @@ int main(void)
 	uint8_t wasOut3LaunchedByRadio = 0;
 	uint64_t radioTurnOffTime = 0;
 	
-	uint8_t wasOut1LaunchedByRadio = 0;	
+	uint8_t wasOut1LaunchedByRadio = 0;
+	
+	uint8_t isRadioEnabled = 0;
 								
 	while(1)
 	{
@@ -88,7 +90,25 @@ int main(void)
 			Device::outputPin3Ptr->SetLowLevel();
 		}
 		
-		if(Device::radionCPinPtr->IsPinSet())
+		if(Device::ButtonPtrStar->IsPressed())
+		{
+			Device::lcd.LCD_Goto(16, 0);
+			
+			if(isRadioEnabled == 0)
+			{
+				isRadioEnabled  = 1;
+				Device::lcd.LCD_SendString("*");
+			}
+			else
+			{
+				isRadioEnabled = 0;
+				Device::lcd.LCD_SendString(" ");
+			}
+			
+			_delay_ms(100);
+		}
+		
+		if(Device::radionCPinPtr->IsPinSet() && isRadioEnabled)
 		{
 			Device::outputPin3Ptr->SetHightLevel();
 			wasOut3LaunchedByRadio = 1;

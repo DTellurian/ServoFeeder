@@ -40,7 +40,7 @@ class Device
 		//static Button* ButtonPtr7;
 		//static Button* ButtonPtr8;
 		//static Button* ButtonPtr9;
-		//static Button* ButtonPtrStar;
+		static Button* ButtonPtrStar;
 		static Button* ButtonPtr0;
 		//static Button* ButtonPtrSharp;
 	
@@ -58,7 +58,7 @@ class Device
 		static Pin* outputPin4Ptr;
 		
 		static Pin* radionAPinPtr;
-		static Pin* radionBPinPtr;
+		//static Pin* radionBPinPtr;
 		static Pin* radionCPinPtr;
 	protected:
 	private:
