@@ -14,7 +14,9 @@
 #include "Lcd/Lcd.h"
 #include "Buttons/KeyMatrixController.h"
 #include "Modes/MainMode.h"
+#include "Modes/DateTimeSetMode.h"
 #include "Lcd/LcdController.h"
+#include "ModesSupport/ModesController.h"
 //---------------------------------------------------------------------------
 
 using namespace LcdNamespace;
@@ -31,25 +33,26 @@ class Device
 	public:	
 		~Device();
 	
-		//static Button* ButtonPtr1;
-		//static Button* ButtonPtr2;
-		//static Button* ButtonPtr3;
-		//static Button* ButtonPtr4;
-		//static Button* ButtonPtr5;
-		//static Button* ButtonPtr6;
-		//static Button* ButtonPtr7;
-		//static Button* ButtonPtr8;
-		//static Button* ButtonPtr9;
-		//static Button* ButtonPtrStar;
+		static Button* ButtonPtr1;
+		static Button* ButtonPtr2;
+		static Button* ButtonPtr3;
+		static Button* ButtonPtr4;
+		static Button* ButtonPtr5;
+		static Button* ButtonPtr6;
+		static Button* ButtonPtr7;
+		static Button* ButtonPtr8;
+		static Button* ButtonPtr9;
+		static Button* ButtonPtrStar;
 		static Button* ButtonPtr0;
-		//static Button* ButtonPtrSharp;
+		static Button* ButtonPtrSharp;
 	
 		static void Initialize();
 						
 		static Lcd lcd;
 		static KeyMatrixController keyMatrixController;
 		static MainMode mainMode;
-		//static LcdController lcdController;
+		static DateTimeSetMode dateTimeSetMode;
+		static LcdController lcdController;
 		
 		static char lcdBuffer[18];
 		
@@ -59,6 +62,10 @@ class Device
 		static Pin* radionAPinPtr;
 		static Pin* radionBPinPtr;
 		static Pin* radionCPinPtr;
+		
+		static ModesController modesController;
+		
+		static DateTimeControl dateTimeControl;
 	protected:
 	private:
 		Device();
