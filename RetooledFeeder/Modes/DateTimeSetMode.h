@@ -36,6 +36,8 @@ class DateTimeSetMode : public ButtonsControllerConsumer, public Mode
 	private:
 		DateTimeSetMode( const DateTimeSetMode &c );
 		DateTimeSetMode& operator=( const DateTimeSetMode &c );
+		
+		uint8_t isDateEdited;
 
 }; //DateTimeSetMode
 //---------------------------------------------------------------------------

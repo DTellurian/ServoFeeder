@@ -14,6 +14,7 @@
 
 // default constructor
 DateTimeSetMode::DateTimeSetMode()
+	:isDateEdited(0)
 {
 } //DateTimeSetMode
 //---------------------------------------------------------------------------
@@ -26,6 +27,8 @@ DateTimeSetMode::~DateTimeSetMode()
 
 void DateTimeSetMode::EnterMode(void)
 {
+	isDateEdited = 0;
+	
 	Device::lcdController.Clear();
 	
 	Device::dateTimeControl.SetXY(4, 0);
@@ -65,12 +68,28 @@ void DateTimeSetMode::ProceedButtonFire(Button* buttonPtr, uint8_t isSealedFire,
 	{
 		RTCDateTime receivedDayTime = RTC::GetDateTime();
 	
-		DateTimeEditHelper::ProceedTimeEditButtonPress(buttonPtr, handled, receivedDayTime, &Device::dateTimeControl, 1);
+		if(!isDateEdited)
+			DateTimeEditHelper::ProceedTimeEditButtonPress(buttonPtr, handled, receivedDayTime, &Device::dateTimeControl, 1);
+		else		
+			DateTimeEditHelper::ProceedDateEditButtonPress(buttonPtr, handled, receivedDayTime, &Device::dateTimeControl, 1);
 		
 		RTC::SetDateTime(receivedDayTime);
 	}
+	else if(buttonPtr == Device::ButtonPtrStar)
+	{
+		if(isDateEdited)
+		{
+			isDateEdited = 0;
+			Device::dateTimeControl.SetCursorCoordinates(0, 0);
+		}
+		else
+		{
+			isDateEdited = 1;
+			Device::dateTimeControl.SetCursorCoordinates(0, 1);
+		}
+	}
 	
-	if(buttonPtr == Device::ButtonPtrStar)
+	if(buttonPtr == Device::ButtonPtrSharp)
 		Device::modesController.SetCurrentMode(&Device::mainMode);
 		
 	

@@ -25,6 +25,7 @@ private:
 //functions
 public:
 	static void ProceedTimeEditButtonPress(Button* buttonPtr, uint8_t& handled, RTCDateTime& timeToEdit, EditableLcdControl* controlPtr, uint8_t editSeconds);
+	static void ProceedDateEditButtonPress(Button* buttonPtr, uint8_t& handled, RTCDateTime& timeToEdit, EditableLcdControl* controlPtr, uint8_t editSeconds);
 	
 	~DateTimeEditHelper();
 protected:

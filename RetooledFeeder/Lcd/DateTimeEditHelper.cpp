@@ -73,3 +73,51 @@ void DateTimeEditHelper::ProceedTimeEditButtonPress(Button* buttonPtr, uint8_t& 
 	}
 }
 //---------------------------------------------------------------------------
+
+void DateTimeEditHelper::ProceedDateEditButtonPress(Button* buttonPtr, uint8_t& handled, RTCDateTime& timeToEdit, EditableLcdControl* controlPtr, uint8_t editSeconds)
+{
+	if(!buttonPtr->IsIntValueButton())
+	return;
+	
+	handled = 1;
+	uint8_t buttonIntValue = buttonPtr->GetButtonIntValue();
+	
+	if(controlPtr->cursorXPosition == 0)
+	{
+		if(buttonIntValue > 2)
+			return;
+		
+		timeToEdit.date= buttonIntValue * 10 + timeToEdit.date % 10;
+		controlPtr->SetCursorCoordinates(1, controlPtr->cursorYPosition);
+	}else if(controlPtr->cursorXPosition == 1)
+	{		
+		timeToEdit.date = buttonIntValue + (timeToEdit.date / 10) * 10;
+		controlPtr->SetCursorCoordinates(3, controlPtr->cursorYPosition);
+	}
+	else if(controlPtr->cursorXPosition == 3)
+	{
+		if(buttonIntValue > 1)
+			return;
+		
+		timeToEdit.month = buttonIntValue * 10 + timeToEdit.month % 10;
+		controlPtr->SetCursorCoordinates(4, controlPtr->cursorYPosition);
+	}
+	else if(controlPtr->cursorXPosition == 4)
+	{
+		if(timeToEdit.hour % 10 == 1 && buttonIntValue > 2)
+			return;
+		
+		timeToEdit.month = buttonIntValue + (timeToEdit.month / 10) * 10;
+		controlPtr->SetCursorCoordinates(6, controlPtr->cursorYPosition);
+	}
+	else if(controlPtr->cursorXPosition == 6)
+	{		
+		timeToEdit.year = buttonIntValue * 10 + timeToEdit.year % 10;
+		controlPtr->SetCursorCoordinates(7, controlPtr->cursorYPosition);
+	}else if(controlPtr->cursorXPosition == 7)
+	{
+		timeToEdit.year = buttonIntValue + (timeToEdit.year / 10) * 10;
+		controlPtr->SetCursorCoordinates(0, controlPtr->cursorYPosition);
+	}
+}
+//---------------------------------------------------------------------------
