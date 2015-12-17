@@ -34,6 +34,38 @@ MainMode::~MainMode()
 } //~MainMode
 //---------------------------------------------------------------------------
 
+void MainMode::Initialize(FeedLaunchSettings& feed1, FeedLaunchSettings& feed2, FeedLaunchSettings& feed3, FeedLaunchSettings& feed4)
+{
+	feedLaunchManager1.SetSettings(feed1);
+	feedLaunchManager2.SetSettings(feed2);
+	feedLaunchManager3.SetSettings(feed3);
+	feedLaunchManager4.SetSettings(feed4);
+}
+//---------------------------------------------------------------------------
+
+void MainMode::EnterMode(void)
+{
+	Device::lcdController.Clear();
+	
+	Device::dateTimeControl.SetXY(0, 0);
+	Device::dateTimeControl.CopyToLcdController();	
+	
+	Device::lcdController.Redraw(1);
+	
+	Device::lcd.LCD_Goto(9, 0);
+	DrawFeedInfo(feedLaunchManager1.settings);
+	
+	Device::lcd.LCD_Goto(9, 1);
+	DrawFeedInfo(feedLaunchManager2.settings);
+	
+	Device::lcd.LCD_Goto(25, 0);
+	DrawFeedInfo(feedLaunchManager3.settings);
+	
+	Device::lcd.LCD_Goto(25, 1);
+	DrawFeedInfo(feedLaunchManager4.settings);
+}
+//---------------------------------------------------------------------------
+
 void MainMode::ProceedModeOnTick()
 {	
 	feedLaunchManager1.ProceedTick();
@@ -45,8 +77,7 @@ void MainMode::ProceedModeOnTick()
 	
 	Device::dateTimeControl.SetTime(receivedDayTime);
 	Device::dateTimeControl.CopyToLcdController();
-	Device::lcdController.Redraw(0);
-	Device::dateTimeControl.AfterLcdRedraw();
+	Device::lcdController.Redraw(0);	
 }
 //---------------------------------------------------------------------------
 
@@ -78,39 +109,11 @@ void MainMode::ProceedButtonFire(Button* buttonPtr, uint8_t isSealedFire, uint8_
 		return;
 	}
 		
-	RTC::SetDateTime(receivedDayTime);	
+	RTC::SetDateTime(receivedDayTime);
 	
 	_delay_ms(100);
 }
 //---------------------------------------------------------------------------
-
-void MainMode::Initialize(FeedLaunchSettings& feed1, FeedLaunchSettings& feed2, FeedLaunchSettings& feed3, FeedLaunchSettings& feed4)
-{	
-	feedLaunchManager1.SetSettings(feed1);
-	feedLaunchManager2.SetSettings(feed2);
-	feedLaunchManager3.SetSettings(feed3);
-	feedLaunchManager4.SetSettings(feed4);		
-}
-//---------------------------------------------------------------------------
-
-//void MainMode::DrawDate(void)
-//{
-	//RTCDateTime receivedDayTime = RTCHelper::LoadDateTime(0);
-	//
-	//if(RTCHelper::DateTimeEquals(lastDateTime, receivedDayTime) == 0)
-	//{
-		//lastDateTime = receivedDayTime;
-		//
-		//Device::lcd.LCD_Goto(0, 0);
-		//sprintf(Device::lcdBuffer, "%.2d:%.2d:%.2d", receivedDayTime.hour, receivedDayTime.minute, receivedDayTime.second);
-		//Device::lcd.LCD_SendString(Device::lcdBuffer);
-		//
-		//Device::lcd.LCD_Goto(0, 1);
-		//sprintf(Device::lcdBuffer, "%.2d:%.2d:%.2d", receivedDayTime.date, receivedDayTime.month, receivedDayTime.year);
-		//Device::lcd.LCD_SendString(Device::lcdBuffer);
-	//}
-//}
-////---------------------------------------------------------------------------
 
 void MainMode::DrawFeedInfo(FeedLaunchSettings& feed)
 {
@@ -124,24 +127,5 @@ void MainMode::DrawFeedInfo(FeedLaunchSettings& feed)
 	}
 	else
 		Device::lcd.LCD_SendString("--");
-}
-//---------------------------------------------------------------------------
-
-void MainMode::EnterMode(void)
-{
-	Device::lcd.LCD_Clear();
-	Device::lcdController.Redraw(1);
-	
-	Device::lcd.LCD_Goto(9, 0);
-	DrawFeedInfo(feedLaunchManager1.settings);
-	
-	Device::lcd.LCD_Goto(9, 1);
-	DrawFeedInfo(feedLaunchManager2.settings);
-	
-	Device::lcd.LCD_Goto(25, 0);
-	DrawFeedInfo(feedLaunchManager3.settings);
-	
-	Device::lcd.LCD_Goto(25, 1);
-	DrawFeedInfo(feedLaunchManager4.settings);	
 }
 //---------------------------------------------------------------------------

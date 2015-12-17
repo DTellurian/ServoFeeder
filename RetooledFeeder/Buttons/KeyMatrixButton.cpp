@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 
 KeyMatrixButton::KeyMatrixButton(void)
+	:buttonIntValue(255)
 {
 	
 }
@@ -25,5 +26,17 @@ void KeyMatrixButton::InitializeMatrixButton(ButtonsController* buttonsControlle
 uint8_t KeyMatrixButton::IsPressed(void)
 {
 	return isVerticalPressed && isHorizontalPressed;
+}
+//---------------------------------------------------------------------------
+
+uint8_t KeyMatrixButton::IsIntValueButton(void)
+{
+	return buttonIntValue != 255;
+}
+//---------------------------------------------------------------------------
+
+uint8_t KeyMatrixButton::GetButtonIntValue(void)
+{
+	return buttonIntValue;
 }
 //---------------------------------------------------------------------------

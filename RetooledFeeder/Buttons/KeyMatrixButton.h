@@ -20,15 +20,20 @@ class KeyMatrixButton : public Button
 		void InitializeMatrixButton(ButtonsController* buttonsControllerPtr, uint16_t delayMs);		
 		
 		friend class KeyMatrixController;
-	protected:
-		virtual uint8_t IsPressed(void);
+		
+		virtual uint8_t IsIntValueButton(void);
+		virtual uint8_t GetButtonIntValue(void);
+		
+		uint8_t buttonIntValue;
+		
+		virtual uint8_t IsPressed(void);		
 		
 	private:		
 		KeyMatrixButton(const KeyMatrixButton& c);
 		KeyMatrixButton& operator=(const KeyMatrixButton& c);
 				
 		volatile uint8_t isHorizontalPressed;
-		volatile uint8_t isVerticalPressed;
+		volatile uint8_t isVerticalPressed;				
 };
 //---------------------------------------------------------------------------
 #endif /* KEYMATRIXBUTTON_H_ */

@@ -41,17 +41,17 @@ Device::~Device()
 //---------------------------------------------------------------------------
 
 
-Button* Device::ButtonPtr1;
-Button* Device::ButtonPtr2;
-Button* Device::ButtonPtr3;
-Button* Device::ButtonPtr4;
-Button* Device::ButtonPtr5;
-Button* Device::ButtonPtr6;
-Button* Device::ButtonPtr7;
-Button* Device::ButtonPtr8;
-Button* Device::ButtonPtr9;
+KeyMatrixButton* Device::ButtonPtr1;
+KeyMatrixButton* Device::ButtonPtr2;
+KeyMatrixButton* Device::ButtonPtr3;
+KeyMatrixButton* Device::ButtonPtr4;
+KeyMatrixButton* Device::ButtonPtr5;
+KeyMatrixButton* Device::ButtonPtr6;
+KeyMatrixButton* Device::ButtonPtr7;
+KeyMatrixButton* Device::ButtonPtr8;
+KeyMatrixButton* Device::ButtonPtr9;
 Button* Device::ButtonPtrStar;
-Button* Device::ButtonPtr0;
+KeyMatrixButton* Device::ButtonPtr0;
 Button* Device::ButtonPtrSharp;
 //---------------------------------------------------------------------------
 
@@ -84,18 +84,29 @@ void Device::Initialize()
 	keyMatrixController.verticalPins[2] = &pinC2;
 	
 	
-	Device::ButtonPtr1= &keyMatrixController.matrixButtons[0][0];
-	Device::ButtonPtr2= &keyMatrixController.matrixButtons[0][1];
-	Device::ButtonPtr3= &keyMatrixController.matrixButtons[0][2];
-	Device::ButtonPtr4= &keyMatrixController.matrixButtons[1][0];
-	Device::ButtonPtr5= &keyMatrixController.matrixButtons[1][1];
-	Device::ButtonPtr6= &keyMatrixController.matrixButtons[1][2];
-	Device::ButtonPtr7= &keyMatrixController.matrixButtons[2][0];
-	Device::ButtonPtr8= &keyMatrixController.matrixButtons[2][1];
-	Device::ButtonPtr9= &keyMatrixController.matrixButtons[2][2];
-	Device::ButtonPtrStar= &keyMatrixController.matrixButtons[3][0];
-	Device::ButtonPtr0= &keyMatrixController.matrixButtons[3][1];
-	Device::ButtonPtrSharp= &keyMatrixController.matrixButtons[3][2];
+	Device::ButtonPtr1 = &keyMatrixController.matrixButtons[0][0];		
+	Device::ButtonPtr2 = &keyMatrixController.matrixButtons[0][1];
+	Device::ButtonPtr3 = &keyMatrixController.matrixButtons[0][2];
+	Device::ButtonPtr4 = &keyMatrixController.matrixButtons[1][0];
+	Device::ButtonPtr5 = &keyMatrixController.matrixButtons[1][1];
+	Device::ButtonPtr6 = &keyMatrixController.matrixButtons[1][2];
+	Device::ButtonPtr7 = &keyMatrixController.matrixButtons[2][0];
+	Device::ButtonPtr8 = &keyMatrixController.matrixButtons[2][1];
+	Device::ButtonPtr9 = &keyMatrixController.matrixButtons[2][2];
+	Device::ButtonPtrStar = &keyMatrixController.matrixButtons[3][0];
+	Device::ButtonPtr0 = &keyMatrixController.matrixButtons[3][1];
+	Device::ButtonPtrSharp = &keyMatrixController.matrixButtons[3][2];
+	
+	Device::ButtonPtr1->buttonIntValue = 1;
+	Device::ButtonPtr2->buttonIntValue = 2;
+	Device::ButtonPtr3->buttonIntValue = 3;
+	Device::ButtonPtr4->buttonIntValue = 4;
+	Device::ButtonPtr5->buttonIntValue = 5;
+	Device::ButtonPtr6->buttonIntValue = 6;
+	Device::ButtonPtr7->buttonIntValue = 7;
+	Device::ButtonPtr8->buttonIntValue = 8;
+	Device::ButtonPtr9->buttonIntValue = 9;
+	Device::ButtonPtr0->buttonIntValue = 0;
 	
 	keyMatrixController.AttachConsumer(&mainMode);
 	keyMatrixController.AttachConsumer(&dateTimeSetMode);

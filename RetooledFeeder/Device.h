@@ -33,17 +33,17 @@ class Device
 	public:	
 		~Device();
 	
-		static Button* ButtonPtr1;
-		static Button* ButtonPtr2;
-		static Button* ButtonPtr3;
-		static Button* ButtonPtr4;
-		static Button* ButtonPtr5;
-		static Button* ButtonPtr6;
-		static Button* ButtonPtr7;
-		static Button* ButtonPtr8;
-		static Button* ButtonPtr9;
+		static KeyMatrixButton* ButtonPtr1;
+		static KeyMatrixButton* ButtonPtr2;
+		static KeyMatrixButton* ButtonPtr3;
+		static KeyMatrixButton* ButtonPtr4;
+		static KeyMatrixButton* ButtonPtr5;
+		static KeyMatrixButton* ButtonPtr6;
+		static KeyMatrixButton* ButtonPtr7;
+		static KeyMatrixButton* ButtonPtr8;
+		static KeyMatrixButton* ButtonPtr9;
 		static Button* ButtonPtrStar;
-		static Button* ButtonPtr0;
+		static KeyMatrixButton* ButtonPtr0;
 		static Button* ButtonPtrSharp;
 	
 		static void Initialize();

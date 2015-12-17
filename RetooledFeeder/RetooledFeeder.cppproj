@@ -254,6 +254,18 @@
     <Compile Include="Lcd\DateTimeControl.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Lcd\DateTimeEditHelper.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Lcd\DateTimeEditHelper.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Lcd\EditableLcdControl.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Lcd\EditableLcdControl.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Lcd\Lcd.cpp">
       <SubType>compile</SubType>
     </Compile>

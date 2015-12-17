@@ -23,6 +23,7 @@ class LcdController
 	public:
 		LcdController(Lcd* lcdPtr);
 		
+		void Clear(void);
 		void Redraw(uint8_t forceRedraw = 0);
 	protected:	
 		
