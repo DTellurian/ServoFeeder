@@ -25,7 +25,8 @@ class RTCHelper
 		static uint8_t DateTimeEquals(RTCDateTime &left, RTCDateTime &right);
 		static uint8_t TimeEquals(RTCDateTime &left, RTCDateTime &right);
 		
-		static void TimeWithSecondsToString(char* stringPtr, RTCDateTime dateTime);		
+		static void TimeWithSecondsToString(char* stringPtr, RTCDateTime dateTime);
+		static void TimeWithoutSecondsToString(char* stringPtr, RTCDateTime dateTime);
 		static void DateToString(char* stringPtr, RTCDateTime dateTime);
 	
 	protected:

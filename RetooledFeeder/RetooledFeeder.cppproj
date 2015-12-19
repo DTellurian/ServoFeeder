@@ -266,6 +266,12 @@
     <Compile Include="Lcd\EditableLcdControl.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Lcd\FeedTimeControl.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Lcd\FeedTimeControl.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Lcd\Lcd.cpp">
       <SubType>compile</SubType>
     </Compile>
@@ -303,6 +309,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Modes\DateTimeSetMode.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Modes\FeedTimeSetMode.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Modes\FeedTimeSetMode.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Modes\MainMode.cpp">

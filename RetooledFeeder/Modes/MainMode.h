@@ -36,7 +36,7 @@ class MainMode : public ButtonsControllerConsumer, public Mode
 		virtual void ProceedButtonFire(Button* buttonPtr, uint8_t isSealedFire, uint8_t sealedFireNumber, uint8_t& handled);
 		
 		virtual void EnterMode(void);
-		void Initialize(FeedLaunchSettings& feed1, FeedLaunchSettings& feed2, FeedLaunchSettings& feed3, FeedLaunchSettings& feed4);
+		void Initialize(FeedLaunchSettings& feed1, FeedLaunchSettings& feed2, FeedLaunchSettings& feed3, FeedLaunchSettings& feed4, FeedLaunchSettings& feed5);
 	protected:
 	private:		
 		MainMode( const MainMode &c );
@@ -46,12 +46,13 @@ class MainMode : public ButtonsControllerConsumer, public Mode
 		
 		
 		//void DrawDate(void);
-		void DrawFeedInfo(FeedLaunchSettings& feed);
+		//void DrawFeedInfo(FeedLaunchSettings& feed);
 		
 		FeedLaunchManager feedLaunchManager1;
 		FeedLaunchManager feedLaunchManager2;
 		FeedLaunchManager feedLaunchManager3;
 		FeedLaunchManager feedLaunchManager4;
+		FeedLaunchManager feedLaunchManager5;
 }; //MainMode
 //---------------------------------------------------------------------------
 #endif //__MAINMODE_H__
