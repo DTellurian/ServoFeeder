@@ -11,7 +11,7 @@
 //---------------------------------------------------------------------------
 
 #define ButtonsControllerButtonsCount 12
-#define ButtonsControllerConsumersCount 2
+#define ButtonsControllerConsumersCount 3
 #define KeyMatrixHorizontalCount 4
 #define KeyMatrixVerticalCount 3
 //---------------------------------------------------------------------------

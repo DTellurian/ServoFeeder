@@ -49,17 +49,24 @@ int main(void)
 	feed2.feedTime.hour = 5;
 		
 	FeedLaunchSettings feed3;
-	feed3.feedTime.hour = receivedDayTime.hour;
-	feed3.feedTime.minute = receivedDayTime.minute + 3;
+	//feed3.feedTime.hour = receivedDayTime.hour;
+	//feed3.feedTime.minute = receivedDayTime.minute + 3;
+	feed3.feedTime.hour = 8;
 	feed3.isEnabled = 0;
 		
 	FeedLaunchSettings feed4;
 	//feed4.feedTime.hour = receivedDayTime.hour;
 	//feed4.feedTime.minute = receivedDayTime.minute + 4;
 	feed4.lengthInSeconds = 3;
-	feed4.feedTime.hour = 8;
+	feed4.feedTime.hour = 14;
 	
-	Device::mainMode.Initialize(feed1, feed2, feed3, feed4);
+	FeedLaunchSettings feed5;
+	//feed4.feedTime.hour = receivedDayTime.hour;
+	//feed4.feedTime.minute = receivedDayTime.minute + 4;
+	feed5.lengthInSeconds = 7;
+	feed5.feedTime.hour = 21;
+	
+	Device::mainMode.Initialize(feed1, feed2, feed3, feed4, feed5);
 				
 	uint8_t wasOut3LaunchedByButton = 0;
 	

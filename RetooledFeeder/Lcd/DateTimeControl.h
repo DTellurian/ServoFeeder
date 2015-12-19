@@ -21,13 +21,7 @@ class DateTimeControl : public EditableLcdControl
 	public:
 			DateTimeControl(LcdController* lcdControllerPtr, uint8_t x, uint8_t y);
 			
-			void SetTime(RTCDateTime time);			
-			
-			
-
-			uint8_t IsInEditMode(void);
-			
-			
+			void SetTime(RTCDateTime time);					
 	protected:
 	private:
 		

@@ -91,8 +91,5 @@ void DateTimeSetMode::ProceedButtonFire(Button* buttonPtr, uint8_t isSealedFire,
 	
 	if(buttonPtr == Device::ButtonPtrSharp)
 		Device::modesController.SetCurrentMode(&Device::mainMode);
-		
-	
-	_delay_ms(100);
 }
 //---------------------------------------------------------------------------

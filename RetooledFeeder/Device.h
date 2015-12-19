@@ -17,6 +17,8 @@
 #include "Modes/DateTimeSetMode.h"
 #include "Lcd/LcdController.h"
 #include "ModesSupport/ModesController.h"
+#include "Modes/FeedTimeSetMode.h"
+#include "Lcd/FeedTimeControl.h"
 //---------------------------------------------------------------------------
 
 using namespace LcdNamespace;
@@ -52,6 +54,7 @@ class Device
 		static KeyMatrixController keyMatrixController;
 		static MainMode mainMode;
 		static DateTimeSetMode dateTimeSetMode;
+		static FeedTimeSetMode feedTimeSetMode;
 		static LcdController lcdController;
 		
 		static char lcdBuffer[18];
@@ -66,6 +69,11 @@ class Device
 		static ModesController modesController;
 		
 		static DateTimeControl dateTimeControl;
+		static FeedTimeControl feed1Control;
+		static FeedTimeControl feed2Control;
+		static FeedTimeControl feed3Control;
+		static FeedTimeControl feed4Control;
+		static FeedTimeControl feed5Control;
 	protected:
 	private:
 		Device();
