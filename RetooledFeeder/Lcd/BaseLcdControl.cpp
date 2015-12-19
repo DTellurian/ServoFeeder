@@ -57,3 +57,10 @@ Lcd* BaseLcdControl::GetLcdPtr(void)
 	return lcdControllerPtr->lcdPtr;
 }
 //---------------------------------------------------------------------------
+
+void BaseLcdControl::SetXY(uint8_t newX, uint8_t newY)
+{
+	this->x = newX;
+	this->y = newY;
+}
+//---------------------------------------------------------------------------

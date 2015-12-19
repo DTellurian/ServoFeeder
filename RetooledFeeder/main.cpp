@@ -32,9 +32,9 @@
 int main(void)
 {
     /* Replace with your application code */		
-		
-	Device::Initialize();
-			
+	
+	Device::Initialize();		
+	
 	RTCDateTime receivedDayTime = RTCHelper::LoadDateTime(1);
 	
 	FeedLaunchSettings feed1;
@@ -59,20 +59,22 @@ int main(void)
 	feed4.lengthInSeconds = 3;
 	feed4.feedTime.hour = 8;
 	
-	Device::mainMode.EnterMode(feed1, feed2, feed3, feed4);
+	Device::mainMode.Initialize(feed1, feed2, feed3, feed4);
 				
 	uint8_t wasOut3LaunchedByButton = 0;
 	
 	uint8_t wasOut3LaunchedByRadio = 0;
-	uint64_t radioTurnOffTime = 0;
-	
+	uint64_t radioTurnOffTime = 0;	
 	uint8_t wasOut1LaunchedByRadio = 0;	
+						
+	Device::modesController.SetCurrentMode(&Device::mainMode);
 								
 	while(1)
 	{
-		Device::mainMode.OnTick();
+		Device::modesController.currentModePtr->ProceedModeOnTick();
+		//Device::mainMode.OnTick();
 		Device::keyMatrixController.ButtonsControllerOnTick();
-		//Device::lcdControllerPtr->Redraw(0);
+		
 		
 		if(Device::ButtonPtr0->IsPressed())
 		{

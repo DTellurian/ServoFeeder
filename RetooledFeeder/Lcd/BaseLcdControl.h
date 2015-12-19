@@ -16,12 +16,14 @@
 class BaseLcdControl
 {
 	public:
-		BaseLcdControl(LcdController* lcdControllerPtr, uint8_t x, uint8_t y, uint8_t width, uint8_t height);				
+		BaseLcdControl(LcdController* lcdControllerPtr, uint8_t x, uint8_t y, uint8_t width, uint8_t height);
 		
 		char* GetBufferPointerToWrite(uint8_t innerControlRowIndex = 0);
 		void Clear(void);
 		
 		void CopyToLcdController(void);
+		
+		void SetXY(uint8_t newX, uint8_t newY);
 	protected:
 			uint8_t x;
 			uint8_t y;
