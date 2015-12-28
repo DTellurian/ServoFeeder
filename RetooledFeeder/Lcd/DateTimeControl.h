@@ -12,17 +12,19 @@
 
 #include "BaseLcdControl.h"
 #include "../BaseTypes/RTC.h"
+#include "EditableLcdControl.h"
 //---------------------------------------------------------------------------
 
-class DateTimeControl : public BaseLcdControl
+class DateTimeControl : public EditableLcdControl
 {
 	//variables
 	public:
 			DateTimeControl(LcdController* lcdControllerPtr, uint8_t x, uint8_t y);
 			
-			void SetTime(RTCDateTime time);			
+			void SetTime(RTCDateTime time);					
 	protected:
 	private:
+		
 
 	//functions
 	public:		

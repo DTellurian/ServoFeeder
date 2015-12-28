@@ -55,6 +55,12 @@ void RTCHelper::TimeWithSecondsToString(char* stringPtr, RTCDateTime dateTime)
 }
 //---------------------------------------------------------------------------
 
+void RTCHelper::TimeWithoutSecondsToString(char* stringPtr, RTCDateTime dateTime)
+{
+	sprintf(stringPtr, "%.2d:%.2d", dateTime.hour, dateTime.minute);
+}
+//---------------------------------------------------------------------------
+
 void RTCHelper::DateToString(char* stringPtr, RTCDateTime dateTime)
 {
 	sprintf(stringPtr, "%.2d:%.2d:%.2d", dateTime.date, dateTime.month, dateTime.year);

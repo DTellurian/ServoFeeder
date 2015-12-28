@@ -14,7 +14,11 @@
 #include "Lcd/Lcd.h"
 #include "Buttons/KeyMatrixController.h"
 #include "Modes/MainMode.h"
+#include "Modes/DateTimeSetMode.h"
 #include "Lcd/LcdController.h"
+#include "ModesSupport/ModesController.h"
+#include "Modes/FeedTimeSetMode.h"
+#include "Lcd/FeedTimeControl.h"
 //---------------------------------------------------------------------------
 
 using namespace LcdNamespace;
@@ -31,25 +35,27 @@ class Device
 	public:	
 		~Device();
 	
-		//static Button* ButtonPtr1;
-		//static Button* ButtonPtr2;
-		//static Button* ButtonPtr3;
-		//static Button* ButtonPtr4;
-		//static Button* ButtonPtr5;
-		//static Button* ButtonPtr6;
-		//static Button* ButtonPtr7;
-		//static Button* ButtonPtr8;
-		//static Button* ButtonPtr9;
-		//static Button* ButtonPtrStar;
-		static Button* ButtonPtr0;
-		//static Button* ButtonPtrSharp;
+		static KeyMatrixButton* ButtonPtr1;
+		static KeyMatrixButton* ButtonPtr2;
+		static KeyMatrixButton* ButtonPtr3;
+		static KeyMatrixButton* ButtonPtr4;
+		static KeyMatrixButton* ButtonPtr5;
+		static KeyMatrixButton* ButtonPtr6;
+		static KeyMatrixButton* ButtonPtr7;
+		static KeyMatrixButton* ButtonPtr8;
+		static KeyMatrixButton* ButtonPtr9;
+		static Button* ButtonPtrStar;
+		static KeyMatrixButton* ButtonPtr0;
+		static Button* ButtonPtrSharp;
 	
 		static void Initialize();
 						
 		static Lcd lcd;
 		static KeyMatrixController keyMatrixController;
 		static MainMode mainMode;
-		//static LcdController lcdController;
+		static DateTimeSetMode dateTimeSetMode;
+		static FeedTimeSetMode feedTimeSetMode;
+		static LcdController lcdController;
 		
 		static char lcdBuffer[18];
 		
@@ -59,6 +65,15 @@ class Device
 		static Pin* radionAPinPtr;
 		static Pin* radionBPinPtr;
 		static Pin* radionCPinPtr;
+		
+		static ModesController modesController;
+		
+		static DateTimeControl dateTimeControl;
+		static FeedTimeControl feed1Control;
+		static FeedTimeControl feed2Control;
+		static FeedTimeControl feed3Control;
+		static FeedTimeControl feed4Control;
+		static FeedTimeControl feed5Control;
 	protected:
 	private:
 		Device();

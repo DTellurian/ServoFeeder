@@ -29,7 +29,9 @@ class Button
 		volatile uint8_t enabledButtonUpFire;
 		volatile uint16_t buttonUpDelayMs;
 		
-		virtual uint8_t IsPressed(void){return 0;};	
+		virtual uint8_t IsPressed(void){return 0;};
+		virtual uint8_t IsIntValueButton(void){return 0;}
+		virtual uint8_t GetButtonIntValue(void){return 0;}
 	protected:	
 		Button(void);
 		Button(ButtonsController* buttonsControllerPtr, uint16_t delayMs);

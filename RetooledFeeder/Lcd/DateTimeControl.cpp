@@ -12,7 +12,7 @@
 
 // default constructor
 DateTimeControl::DateTimeControl(LcdController* lcdControllerPtr, uint8_t x, uint8_t y)
-	:BaseLcdControl(lcdControllerPtr, x, y, 8, 2)
+	:EditableLcdControl(lcdControllerPtr, x, y, 8, 2)
 {
 } //DateTimeControl
 //---------------------------------------------------------------------------
@@ -37,3 +37,4 @@ void DateTimeControl::SetTime(RTCDateTime time)
 	RTCHelper::DateToString(buffer, time);
 }
 //---------------------------------------------------------------------------
+

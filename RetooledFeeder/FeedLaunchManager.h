@@ -27,13 +27,13 @@ class FeedLaunchManager
 		
 		void SetSettings(FeedLaunchSettings settings);
 		void ProceedTick(void);
+		
+		FeedLaunchSettings settings;
 	protected:
 	private:		
 		FeedLaunchManager( const FeedLaunchManager &c );
 		FeedLaunchManager& operator=( const FeedLaunchManager &c );
-
-
-		FeedLaunchSettings settings;
+		
 		uint8_t wasLaunched;
 		uint64_t turnOffTime;
 }; //FeedLaunchManager

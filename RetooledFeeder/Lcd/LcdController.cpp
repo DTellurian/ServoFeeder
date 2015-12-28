@@ -15,6 +15,19 @@ LcdController::LcdController(Lcd* lcdPtr)
 }
 //---------------------------------------------------------------------------
 
+void LcdController::Clear(void)
+{
+		for(uint8_t y = 0; y < LCD_ROWS_COUNT; y++)			
+			for(uint8_t x = 0; x < LCD_DIGITS_COUNT; x++)
+			{
+				currentState[y][x] = 0;
+				bufferedtState[y][x] = 0;
+			}
+			
+		lcdPtr->LCD_Clear();
+}
+//---------------------------------------------------------------------------
+
 void LcdController::Redraw(uint8_t forceRedraw)
 {	
 	uint8_t previousRedrawFlag = 1;

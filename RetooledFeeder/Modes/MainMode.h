@@ -16,9 +16,10 @@
 #include "../Lcd/DateTimeControl.h"
 #include "../FeedLaunchSettings.h"
 #include "../FeedLaunchManager.h"
+#include "../ModesSupport/Mode.h"
 //---------------------------------------------------------------------------
 
-class MainMode : public ButtonsControllerConsumer
+class MainMode : public ButtonsControllerConsumer, public Mode
 {
 	//variables
 	public:
@@ -27,32 +28,31 @@ class MainMode : public ButtonsControllerConsumer
 
 	//functions
 	public:
+		//MainMode(void);
 		MainMode(void);
-		//MainMode(LcdController* lcdControllerPtr);
-	
-		
 		~MainMode();
 										
-		void OnTick(void);
+		virtual void ProceedModeOnTick(void);
 		virtual void ProceedButtonFire(Button* buttonPtr, uint8_t isSealedFire, uint8_t sealedFireNumber, uint8_t& handled);
 		
-		void EnterMode(FeedLaunchSettings& feed1, FeedLaunchSettings& feed2, FeedLaunchSettings& feed3, FeedLaunchSettings& feed4);
+		virtual void EnterMode(void);
+		void Initialize(FeedLaunchSettings& feed1, FeedLaunchSettings& feed2, FeedLaunchSettings& feed3, FeedLaunchSettings& feed4, FeedLaunchSettings& feed5);
 	protected:
-	private:
-		//MainMode(void);
+	private:		
 		MainMode( const MainMode &c );
 		MainMode& operator=( const MainMode &c );
 		
 		RTCDateTime lastDateTime;				
-		//DateTimeControl dateTimeControl;
 		
-		void DrawDate(void);
-		void DrawFeedInfo(FeedLaunchSettings& feed);
+		
+		//void DrawDate(void);
+		//void DrawFeedInfo(FeedLaunchSettings& feed);
 		
 		FeedLaunchManager feedLaunchManager1;
 		FeedLaunchManager feedLaunchManager2;
 		FeedLaunchManager feedLaunchManager3;
 		FeedLaunchManager feedLaunchManager4;
+		FeedLaunchManager feedLaunchManager5;
 }; //MainMode
 //---------------------------------------------------------------------------
 #endif //__MAINMODE_H__

@@ -16,11 +16,12 @@
 //---------------------------------------------------------------------------
 
 Lcd Device::lcd;
-//LcdController Device::lcdController(&Device::lcd);
+LcdController Device::lcdController(&Device::lcd);
 
 KeyMatrixController Device::keyMatrixController;
-//MainMode Device::mainMode(&Device::lcdController);
 MainMode Device::mainMode;
+DateTimeSetMode Device::dateTimeSetMode;
+FeedTimeSetMode Device::feedTimeSetMode;
 
 char Device::lcdBuffer[18];
 
@@ -30,6 +31,13 @@ Pin* Device::outputPin3Ptr;
 Pin* Device::radionAPinPtr;
 Pin* Device::radionBPinPtr;
 Pin* Device::radionCPinPtr;
+
+DateTimeControl Device::dateTimeControl(&Device::lcdController, 0, 0);
+FeedTimeControl Device::feed1Control(&Device::lcdController, 9, 0);
+FeedTimeControl Device::feed2Control(&Device::lcdController, 9, 1);
+FeedTimeControl Device::feed3Control(&Device::lcdController, 25, 0);
+FeedTimeControl Device::feed4Control(&Device::lcdController, 25, 1);
+FeedTimeControl Device::feed5Control(&Device::lcdController, 16, 1);
 //---------------------------------------------------------------------------
 
 // default destructor
@@ -39,18 +47,21 @@ Device::~Device()
 //---------------------------------------------------------------------------
 
 
-//Button* Device::ButtonPtr1;
-//Button* Device::ButtonPtr2;
-//Button* Device::ButtonPtr3;
-//Button* Device::ButtonPtr4;
-//Button* Device::ButtonPtr5;
-//Button* Device::ButtonPtr6;
-//Button* Device::ButtonPtr7;
-//Button* Device::ButtonPtr8;
-//Button* Device::ButtonPtr9;
-//Button* Device::ButtonPtrStar;
-Button* Device::ButtonPtr0;
-//Button* Device::ButtonPtrSharp;
+KeyMatrixButton* Device::ButtonPtr1;
+KeyMatrixButton* Device::ButtonPtr2;
+KeyMatrixButton* Device::ButtonPtr3;
+KeyMatrixButton* Device::ButtonPtr4;
+KeyMatrixButton* Device::ButtonPtr5;
+KeyMatrixButton* Device::ButtonPtr6;
+KeyMatrixButton* Device::ButtonPtr7;
+KeyMatrixButton* Device::ButtonPtr8;
+KeyMatrixButton* Device::ButtonPtr9;
+Button* Device::ButtonPtrStar;
+KeyMatrixButton* Device::ButtonPtr0;
+Button* Device::ButtonPtrSharp;
+//---------------------------------------------------------------------------
+
+ModesController Device::modesController;
 //---------------------------------------------------------------------------
 
 void Device::Initialize()
@@ -67,7 +78,7 @@ void Device::Initialize()
 	//_delay_ms(1000);
 
 		
-	keyMatrixController.Initialize(100);
+	keyMatrixController.Initialize(10);
 
 	keyMatrixController.horizontalPins[0] = &pinD3;
 	keyMatrixController.horizontalPins[1] = &pinC0;
@@ -79,20 +90,33 @@ void Device::Initialize()
 	keyMatrixController.verticalPins[2] = &pinC2;
 	
 	
-	//Device::ButtonPtr1= &keyMatrixController.matrixButtons[0][0];
-	//Device::ButtonPtr2= &keyMatrixController.matrixButtons[0][1];
-	//Device::ButtonPtr3= &keyMatrixController.matrixButtons[0][2];
-	//Device::ButtonPtr4= &keyMatrixController.matrixButtons[1][0];
-	//Device::ButtonPtr5= &keyMatrixController.matrixButtons[1][1];
-	//Device::ButtonPtr6= &keyMatrixController.matrixButtons[1][2];
-	//Device::ButtonPtr7= &keyMatrixController.matrixButtons[2][0];
-	//Device::ButtonPtr8= &keyMatrixController.matrixButtons[2][1];
-	//Device::ButtonPtr9= &keyMatrixController.matrixButtons[2][2];
-	//Device::ButtonPtrStar= &keyMatrixController.matrixButtons[3][0];
-	Device::ButtonPtr0= &keyMatrixController.matrixButtons[3][1];
-	//Device::ButtonPtrSharp= &keyMatrixController.matrixButtons[3][2];
+	Device::ButtonPtr1 = &keyMatrixController.matrixButtons[0][0];		
+	Device::ButtonPtr2 = &keyMatrixController.matrixButtons[0][1];
+	Device::ButtonPtr3 = &keyMatrixController.matrixButtons[0][2];
+	Device::ButtonPtr4 = &keyMatrixController.matrixButtons[1][0];
+	Device::ButtonPtr5 = &keyMatrixController.matrixButtons[1][1];
+	Device::ButtonPtr6 = &keyMatrixController.matrixButtons[1][2];
+	Device::ButtonPtr7 = &keyMatrixController.matrixButtons[2][0];
+	Device::ButtonPtr8 = &keyMatrixController.matrixButtons[2][1];
+	Device::ButtonPtr9 = &keyMatrixController.matrixButtons[2][2];
+	Device::ButtonPtrStar = &keyMatrixController.matrixButtons[3][0];
+	Device::ButtonPtr0 = &keyMatrixController.matrixButtons[3][1];
+	Device::ButtonPtrSharp = &keyMatrixController.matrixButtons[3][2];
 	
-	keyMatrixController.AttachConsumer(&mainMode);	
+	Device::ButtonPtr1->buttonIntValue = 1;
+	Device::ButtonPtr2->buttonIntValue = 2;
+	Device::ButtonPtr3->buttonIntValue = 3;
+	Device::ButtonPtr4->buttonIntValue = 4;
+	Device::ButtonPtr5->buttonIntValue = 5;
+	Device::ButtonPtr6->buttonIntValue = 6;
+	Device::ButtonPtr7->buttonIntValue = 7;
+	Device::ButtonPtr8->buttonIntValue = 8;
+	Device::ButtonPtr9->buttonIntValue = 9;
+	Device::ButtonPtr0->buttonIntValue = 0;
+	
+	keyMatrixController.AttachConsumer(&mainMode);
+	keyMatrixController.AttachConsumer(&dateTimeSetMode);
+	keyMatrixController.AttachConsumer(&feedTimeSetMode);
 	
 	RTCDateTime receivedDayTime = RTC::GetDateTime();
 		
@@ -117,17 +141,14 @@ void Device::Initialize()
 		RTC::SetDateTime(dt);
 
 		lcd.LCD_SendString("Clock init finish!");
-		_delay_ms(500);
+		_delay_ms(5000);
+		lcd.LCD_Clear();
 	}
-
-
-	//lcd.LCD_Clear();
-	lcd.LCD_SendString("Started!");
-	_delay_ms(10000);
+	
+	lcd.LCD_SendString("Launching!");
+	_delay_ms(2000);
 		
-	RTCDateTime lastDateTime = RTCDateTime();
-		
-	//lcd.LCD_WriteCom(0b00001111);Отображение курсора, мигание курсора!	
+	RTCDateTime lastDateTime = RTCDateTime();		
 			
 	pinA4.SetAsOutput();
 	outputPin3Ptr = &pinA4;
@@ -144,7 +165,6 @@ void Device::Initialize()
 	pinB6.SetAsInputWithPullUp();
 	Device::radionCPinPtr = &pinB6;
 	
-	//DateTime::Initialize(260, 4);
 	DateTime::Initialize(4);
 	Device::InitTimer2();
 }
