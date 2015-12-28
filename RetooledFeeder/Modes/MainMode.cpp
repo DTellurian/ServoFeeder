@@ -16,6 +16,7 @@
 #include "../Device.h"
 #include "../Buttons/Button.h"
 #include "../BaseTypes/RTCHelper.h"
+#include "../FeedSettingsLoader.h"
 //---------------------------------------------------------------------------
 
 //char mainBuffer[33];
@@ -36,6 +37,12 @@ MainMode::~MainMode()
 
 void MainMode::Initialize(FeedLaunchSettings& feed1, FeedLaunchSettings& feed2, FeedLaunchSettings& feed3, FeedLaunchSettings& feed4, FeedLaunchSettings& feed5)
 {
+	FeedSettingsLoader::LoadSettings(feed1, 0);
+	FeedSettingsLoader::LoadSettings(feed2, 1);
+	FeedSettingsLoader::LoadSettings(feed3, 2);
+	FeedSettingsLoader::LoadSettings(feed4, 3);
+	FeedSettingsLoader::LoadSettings(feed5, 4);
+	
 	feedLaunchManager1.SetSettings(feed1);
 	feedLaunchManager2.SetSettings(feed2);
 	feedLaunchManager3.SetSettings(feed3);
@@ -97,47 +104,35 @@ void MainMode::ProceedButtonFire(Button* buttonPtr, uint8_t isSealedFire, uint8_
 	
 	handled = 1;
 	
-	//RTCDateTime receivedDayTime = RTC::GetDateTime();
-
 	if(buttonPtr == Device::ButtonPtr1)
 	{
 		Device::feedTimeSetMode.EnterMode(&Device::feed1Control, &feedLaunchManager1, 0);
 		return;			
 	}
-		//receivedDayTime.hour++;
-	//else if(buttonPtr == Device::ButtonPtr4)
-		//receivedDayTime.hour--;
-	//else if(buttonPtr == Device::ButtonPtr2)
-		//receivedDayTime.minute++;
-	//else if(buttonPtr == Device::ButtonPtr5)
-		//receivedDayTime.minute--;
-	//else if(buttonPtr == Device::ButtonPtr3)
-		//receivedDayTime.second++;
-	//else if(buttonPtr == Device::ButtonPtr6)
-		//receivedDayTime.hour = 16;
+	else if(buttonPtr == Device::ButtonPtr2)		
+	{
+		Device::feedTimeSetMode.EnterMode(&Device::feed2Control, &feedLaunchManager2, 1);
+		return;
+	}
+	else if(buttonPtr == Device::ButtonPtr3)
+	{
+		Device::feedTimeSetMode.EnterMode(&Device::feed3Control, &feedLaunchManager3, 2);
+		return;
+	}
+	else if(buttonPtr == Device::ButtonPtr4)
+	{
+		Device::feedTimeSetMode.EnterMode(&Device::feed4Control, &feedLaunchManager4, 3);
+		return;
+	}
+	else if(buttonPtr == Device::ButtonPtr5)
+	{
+		Device::feedTimeSetMode.EnterMode(&Device::feed5Control, &feedLaunchManager5, 4);
+		return;
+	}
 	else if(buttonPtr == Device::ButtonPtrStar)
 	{
 		Device::modesController.SetCurrentMode(&Device::dateTimeSetMode);
 		return;
 	}
-		
-	//RTC::SetDateTime(receivedDayTime);
-	
-	//_delay_ms(100);
 }
 //---------------------------------------------------------------------------
-
-//void MainMode::DrawFeedInfo(FeedLaunchSettings& feed)
-//{
-	//sprintf(Device::lcdBuffer, "%.2d:%.2d", feed.feedTime.hour, feed.feedTime.minute);
-	//Device::lcd.LCD_SendString(Device::lcdBuffer);
-	//
-	//if(feed.isEnabled)
-	//{
-		//sprintf(Device::lcdBuffer, "T%.i", feed.lengthInSeconds);
-		//Device::lcd.LCD_SendString(Device::lcdBuffer);
-	//}
-	//else
-		//Device::lcd.LCD_SendString("--");
-//}
-////---------------------------------------------------------------------------
