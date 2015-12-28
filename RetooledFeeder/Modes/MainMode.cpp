@@ -16,6 +16,7 @@
 #include "../Device.h"
 #include "../Buttons/Button.h"
 #include "../BaseTypes/RTCHelper.h"
+#include "../FeedSettingsLoader.h"
 //---------------------------------------------------------------------------
 
 //char mainBuffer[33];
@@ -36,6 +37,12 @@ MainMode::~MainMode()
 
 void MainMode::Initialize(FeedLaunchSettings& feed1, FeedLaunchSettings& feed2, FeedLaunchSettings& feed3, FeedLaunchSettings& feed4, FeedLaunchSettings& feed5)
 {
+	FeedSettingsLoader::LoadSettings(feed1, 0);
+	FeedSettingsLoader::LoadSettings(feed2, 1);
+	FeedSettingsLoader::LoadSettings(feed3, 2);
+	FeedSettingsLoader::LoadSettings(feed4, 3);
+	FeedSettingsLoader::LoadSettings(feed5, 4);
+	
 	feedLaunchManager1.SetSettings(feed1);
 	feedLaunchManager2.SetSettings(feed2);
 	feedLaunchManager3.SetSettings(feed3);

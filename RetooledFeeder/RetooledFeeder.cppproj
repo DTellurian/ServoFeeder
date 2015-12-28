@@ -155,6 +155,12 @@
     <Compile Include="BaseTypes\DateTimeTimerInit.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="BaseTypes\EEPROM.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="BaseTypes\EEPROM.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="BaseTypes\Pin.cpp">
       <SubType>compile</SubType>
     </Compile>
@@ -240,6 +246,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="FeedLaunchSettings.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="FeedSettingsLoader.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="FeedSettingsLoader.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Lcd\BaseLcdControl.cpp">

@@ -9,6 +9,7 @@
 #include "FeedTimeSetMode.h"
 #include "../Device.h"
 #include "../Lcd/DateTimeEditHelper.h"
+#include "../FeedSettingsLoader.h"
 //---------------------------------------------------------------------------
 
 // default constructor
@@ -52,6 +53,7 @@ void FeedTimeSetMode::EnterMode(void)
 
 void FeedTimeSetMode::ExitMode(void)
 {
+	FeedSettingsLoader::SaveSettings(feedLaunchManagerPtr->settings, feedSettingsIndex);
 	feedControlPtr->ExitEditMode();
 }
 //---------------------------------------------------------------------------
