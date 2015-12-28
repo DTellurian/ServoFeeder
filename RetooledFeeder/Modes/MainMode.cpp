@@ -107,6 +107,21 @@ void MainMode::ProceedButtonFire(Button* buttonPtr, uint8_t isSealedFire, uint8_
 		Device::feedTimeSetMode.EnterMode(&Device::feed2Control, &feedLaunchManager2, 1);
 		return;
 	}
+	else if(buttonPtr == Device::ButtonPtr3)
+	{
+		Device::feedTimeSetMode.EnterMode(&Device::feed3Control, &feedLaunchManager3, 2);
+		return;
+	}
+	else if(buttonPtr == Device::ButtonPtr4)
+	{
+		Device::feedTimeSetMode.EnterMode(&Device::feed4Control, &feedLaunchManager4, 3);
+		return;
+	}
+	else if(buttonPtr == Device::ButtonPtr5)
+	{
+		Device::feedTimeSetMode.EnterMode(&Device::feed5Control, &feedLaunchManager5, 4);
+		return;
+	}
 	else if(buttonPtr == Device::ButtonPtrStar)
 	{
 		Device::modesController.SetCurrentMode(&Device::dateTimeSetMode);
