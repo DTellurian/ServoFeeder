@@ -34,6 +34,9 @@ class FeedLaunchManager
 		FeedLaunchManager( const FeedLaunchManager &c );
 		FeedLaunchManager& operator=( const FeedLaunchManager &c );
 		
+		uint8_t wasShakerLaunched;
+		//uint8_t wasAfterShakerLaunched;
+		
 		uint8_t wasLaunched;
 		uint64_t turnOffTime;
 }; //FeedLaunchManager

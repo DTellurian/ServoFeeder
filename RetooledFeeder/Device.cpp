@@ -26,7 +26,9 @@ FeedTimeSetMode Device::feedTimeSetMode;
 char Device::lcdBuffer[18];
 
 Pin* Device::outputPin1Ptr;
+Pin* Device::outputPin2Ptr;
 Pin* Device::outputPin3Ptr;
+Pin* Device::outputPin4Ptr;
 
 Pin* Device::radionAPinPtr;
 Pin* Device::radionBPinPtr;
@@ -149,12 +151,18 @@ void Device::Initialize()
 	_delay_ms(2000);
 		
 	RTCDateTime lastDateTime = RTCDateTime();		
-			
-	pinA4.SetAsOutput();
-	outputPin3Ptr = &pinA4;
-	
+
 	pinA1.SetAsOutput();
 	outputPin1Ptr = &pinA1;
+	
+	pinA2.SetAsOutput();
+	outputPin2Ptr = &pinA2;
+			
+	pinA4.SetAsOutput();
+	outputPin3Ptr = &pinA4;		
+	
+	pinA3.SetAsOutput();
+	outputPin4Ptr = &pinA3;
 	
 	pinB5.SetAsInputWithPullUp();
 	Device::radionAPinPtr = &pinB5;
